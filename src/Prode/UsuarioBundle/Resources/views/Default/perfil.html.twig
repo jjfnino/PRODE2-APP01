@@ -1,0 +1,53 @@
+{% extends '::frontend.html.twig' %} {% block id 'usuario' %} {% block
+title %}Ver / Modificar mis datos{% endblock %} {% block article %}
+<table cellspacing="1" cellpadding="1" border="0" width="580">
+	<tr>
+		<td class="titulos" colspan="9">Ver Modificar Mi Perfil</td>
+	</tr>
+</table>
+
+<form action="{{ path('usuario_perfil') }}" method="post"
+	
+	
+{{ form_enctype(formulario) }}>
+	<table class="registro">
+		<tr>
+			<td colspan="2">{% for mensaje in app.session.flashbag.get('info') %}
+				<p class="info">{{ mensaje }}</p> {% endfor %}
+			</td>
+		</tr>
+		<tr>
+			<td width="150">{{ form_label(formulario.nombre, 'Nombre') }}</td>
+			<td>{{ form_widget(formulario.nombre) }}{{
+				form_errors(formulario.nombre) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(formulario.apellido, 'Apellido') }}</td>
+			<td>{{ form_errors(formulario.apellido) }} {{
+				form_widget(formulario.apellido) }}</td>
+		</tr>
+		<TR>
+			<td>{{ form_label(formulario.fecha_nacimiento, 'Fecha de Nacimiento')
+				}}</td>
+			<td>{{ form_errors(formulario.fecha_nacimiento) }} {{
+				form_widget(formulario.fecha_nacimiento) }}</td>
+		</tr>
+		<tr>
+			<td>{{ form_label(formulario.dni, 'DNI') }}</td>
+			<td>{{ form_errors(formulario.dni) }} {{ form_widget(formulario.dni)
+				}}</td>
+		</tr>
+
+		<tr>
+			<td height="10"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">{{ form_rest(formulario) }} {{
+				form_widget(formulario) }}
+				<button type="submit" value="Guardar cambios" />Guardar cambios
+				</button>
+			</td>
+		</tr>
+	</table>
+</form>
+{% endblock %}

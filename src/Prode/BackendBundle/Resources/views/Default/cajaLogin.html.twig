@@ -1,0 +1,10 @@
+{# src/Cupon/UsuarioBundle/Resources/views/Default/cajaLogin.html.twig
+#} {% if is_granted('ROLE_USUARIO') %} {# include
+':includes:flashes.html.twig' #}
+
+Hola <b>{{ usuario.nombre }}</b> <span class="caret">
+              </span>
+
+
+{% endif %}
+

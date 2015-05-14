@@ -1,0 +1,87 @@
+{% extends '::backend.html.twig' %} {% block title %} Mundial 2014 -
+Segurviaje {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+	{# render(controller('BackendBundle:Usuarios:cajaUsuarios')) #}
+	<header><h3>VENTAS - BUSCADOR USUARIOS</h3></header>
+	<div class="module_content">
+			<table cellspacing="1" cellpadding="5" border="0" width="100%">
+		
+		<tr>
+			<td class="backend_descripcion" colspan="9" >Haciendo click el  bot&oacute;n <img src="{{ asset('images/iconos/iResults.png') }}" width="15"
+				border="0" /> que figura al lado de cada usuario encontrado, podr&aacute; visualizar, agregar o intercambiar puntos por ventas</td>
+		</tr>
+	</table>
+	<table cellspacing="1" cellpadding="1" border="0" width="580">
+		<tr>
+			<td height="15"></td>
+		</tr>
+		<tr>
+			<td class="titulos" colspan="9">Resultados</td>
+		</tr>
+		<tr>
+			<td class="titulos" colspan="9"><a href="portada">Volver</a></td>
+		</tr>
+		<!-- tr>
+			<td>
+
+				<form action="{{ path('ventas_results') }}" method="post">
+					<table cellspacing="1" cellpadding="1" border="0" width="580">
+						<tr>
+							<td height="15"></td>
+						</tr>
+						<tr>
+							<td class="titulos" colspan="9"><input type="text" placeholder="Nombre" id="nombre" name="nombre">
+							<input type="text" placeholder="Apellido" id="apellido" name="apellido"><br>
+							<input type="text" placeholder="Dni" id="dni" name="dni">
+							<input type="text" placeholder="E-Mail" id="email" name="email"><br>
+							<input type="text" placeholder="Apodo" id="apodo" name="apodo">&nbsp;&nbsp;<button type="submit"
+												style="border: 0px; font-size: 11px; width: 150px; height: 25px;">Buscar</button>
+							</td>
+						</tr>
+						<tr>
+							<td align="center"></td>
+						</tr>
+
+					</table>
+
+				</form>
+			</td>
+		</tr--->
+
+	</table>
+	<table cellspacing="5" cellpadding="5" border="0">
+		<tr>
+			<td class="subtitulos" colspan="9">&raquo; Ventas</td>
+		</tr>
+		<tr>
+			<td><b>#</b></td>
+			<td><b>Apodo</b></td>
+			<td><b>Apellido y Nombre</b></td>
+			<td><b>E-Mail</b></td>
+
+			<td><b>DNI</b></td>
+			
+			<td><b>Ventas</b></td>
+			
+			
+		</tr>
+		{% set count = 1 %} {% for venta in ventas %}
+		<tr>
+			<td align="center"><div class="count">{{ count }}</div></td>
+			<td align="left" valign="middle" width="150">{{ venta.apodo }}</td>
+			<td align="left" valign="middle" width="150">{{ venta.apellido }}, {{
+				venta.nombre }}</td>
+			<td align="left" valign="middle" width="150">{{ venta.email }}</td>
+			<td align="left" valign="middle" width="100">{{ venta.dni }}</td>
+			<td align="center"><a href="detalle/{{ venta.id }}"><img src="{{ asset('images/iconos/iResults.png') }}" width="25"
+				border="0" /></a></td>
+		</tr>
+		<tr>
+			<td colspan="12" height="1" style="border-top: 1px solid #c3c3c3;"></td>
+		</tr>
+		{% set count = count + 1 %} {% endfor %}
+	</table>
+
+</div>
+</article>
+{% endblock %}

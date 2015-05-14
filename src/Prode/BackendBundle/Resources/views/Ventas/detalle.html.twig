@@ -1,0 +1,230 @@
+{% extends '::backend.html.twig' %} {% block title %} Mundial 2014 -
+Segurviaje {% endblock %} {% block id 'index' %} {% block article %}
+<style>
+.datos {
+	font-family: arial;
+	font-size: 18px;
+	width: 350px;
+	text-align: left;
+}
+
+.tituloss {
+	font-family: arial;
+	font-size: 12px;
+	color: #c3c3c3;
+	width: 100px;
+	text-align: right;
+}
+</style>
+<script>
+	function validate(evt) {
+		  var theEvent = evt || window.event;
+		  var key = theEvent.keyCode || theEvent.which;
+		  key = String.fromCharCode( key );
+		  var regex = /[0-9]|\./;
+		  if( !regex.test(key) ) {
+		    theEvent.returnValue = false;
+		    if(theEvent.preventDefault) theEvent.preventDefault();
+		  }
+		}
+
+	</script>
+<script type="text/javascript">
+function validateForm(){
+    var form = document.getElementById("register"), inputs = form.getElementsByTagName("input"), input = null, flag = true;
+    for(var i = 0, len = inputs.length; i < len; i++) {
+        input = inputs[i];
+        if(!input.value) {
+            flag = false;
+            input.focus();
+            alert("Complete todos los campos");
+            break;
+        }
+    }
+    return(flag);
+}
+</script>
+<article class="module width_full">
+
+	<header>
+		<h3>VENTAS USUARIO</h3>
+	</header>
+	<div class="module_content">
+		<table cellspacing="1" cellpadding="5" border="0" width="100%">
+
+			<tr>
+				<td class="backend_descripcion" colspan="9">&bull; En el recuadro "Detalle
+					Ventas" visualizara todos los movimientos de puntos asignados al
+					usuario.<br>&bull; Para agregar puntos por ventas deber&aacute; utilizar
+					el recuadro que dice <b>AGREGAR PUNTOS POR SEMANA</b>, ingresando la
+					cantidad de puntos y la semana correspondiente. Para restar puntos en caso de haber confusi&oacute;n debe ingresar el importe a restar con signo negativo por ejemplo ( -15 ). <br>&bull; Para
+					intercambiar puntos por premios deber&aacute; ir al recuadro
+					<b>INTERCAMBIAR PUNTOS POR PREMIOS</b> y asignar el premio. En la
+					descripcion de cada premio figura la cantidad de puntos que debe
+					tener para intercambiarlo por un premio
+				</td>
+			</tr>
+		</table>
+		{% for jugador in usuario %}
+		<table cellspacing="1" cellpadding="5" border="0" width="100%">
+
+			<tr>
+				<td><a href="../portada" width="150" class="add"><img
+						src="{{ asset('images/iconos/iBack.png') }}" title="Volver"
+						width="15" valign="middle" />&nbsp;&nbsp;&nbsp;VOLVER</a></td>
+
+			</tr>
+		</table>
+
+		<table cellspacing="5" cellpadding="5" border="0">
+			<tr>
+				<td><b>#</b></td>
+				<td><b>Apodo</b></td>
+				<td><b>Apellido y Nombre</b></td>
+				<td><b>E-Mail</b></td>
+
+				<td><b>DNI</b></td>
+
+
+
+
+			</tr>
+			<tr>
+				<td align="center"><div class="count">{{ jugador.id }}</div></td>
+				<td align="left" valign="middle" width="150">{{ jugador.apodo }}</td>
+				<td align="left" valign="middle" width="150">{{ jugador.apellido }},
+					{{ jugador.nombre }}</td>
+				<td align="left" valign="middle" width="150">{{ jugador.email }}</td>
+				<td align="left" valign="middle" width="100">{{ jugador.dni }}</td>
+
+			</tr>
+			<tr>
+				<td colspan="12" height="1" style="border-top: 1px solid #c3c3c3;"></td>
+			</tr>
+
+		</table>
+
+
+
+		<table cellspacing="1" cellpadding="1" border="0" width="100%">
+			<tr>
+				<td height="15"></td>
+			</tr>
+			<tr>
+				<td class="subtitulos" colspan="9" valign="top" width="340">&raquo;
+					Detalle Ventas</td>
+
+			</tr>
+
+		</table>
+		<table cellspacing="2" cellpadding="2" border="0">
+			<tr>
+				<td valign="top" width="70%"><table cellspacing="2" cellpadding="2"
+						border="0" width="100%"
+						style="padding: 8px; border: solid 1px #c3c3c3;">
+						<tr>
+							<td width="50"><b>Semana</b></td>
+							<td width="50"><b>Puntos</b></td>
+							<td width="150"><b>Fecha | Hora</b></td>
+							<td><b>Descripcion</b></td>
+
+
+
+
+						</tr>
+						{% set total = 0 %} {% for venta in ventas %} {% set total = total
+						+ venta.puntos %}
+						<tr>
+							<td align="center">{{ venta.semana }}</td>
+							<td align="center" valign="middle">{{ venta.puntos }}</td>
+							<td align="left" valign="middle">{{ venta.fecha | date('d-m-Y
+								H:i:s') }}</td>
+							<td align="left" valign="middle">{{ venta.descripcion }}</td>
+						</tr>
+						<tr>
+							<td colspan="12" height="1"
+								style="border-top: 1px solid #c3c3c3;"></td>
+						</tr>
+
+
+						{% endfor %}
+						<tr>
+							<td colspan="12" height="1"
+								style="border-top: 1px solid #c3c3c3;"></td>
+						</tr>
+						<tr>
+							<td><b>TOTAL: </b></td>
+							<td align="center">{{ total }}</td>
+						</tr>
+					</table></td>
+				<td valign="top" width="30%">
+					<table cellspacing="1" cellpadding="1" border="0" width="100%">
+
+						<tr>
+
+							<td valign="top" style="padding: 8px; border: solid 1px #c3c3c3;"><form
+									action="{{ path('ventas_acumular') }}" method="post"
+									onsubmit="return validateForm();" name="register" id="register">
+									<table cellspacing="2" cellpadding="0" border="0">
+										<tr>
+											<td colspan="2">AGREGAR PUNTOS POR SEMANA</td>
+										</tr>
+										<tr>
+											<td><select id="semana" name="semana">
+													<option>semana...</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+											</select> <!-- id usuario --> <input type="hidden" id="id"
+												name="id" value="{{ jugador.id }}" /></td>
+
+											<td width="250"><input type="text" id="puntos" name="puntos"
+												style="width: 25px;" />pts
+												<button type="submit"
+													style="border: 0px; width: 30px; height: 30px;">+</button></td>
+										</tr>
+									</table>
+								</form></td>
+						</tr>
+						<tr>
+							<td valign="top" style="padding: 8px; border: solid 1px #c3c3c3;"><form
+									action="{{ path('ventas_intercambiar') }}" method="post">
+									<table cellspacing="2" cellpadding="0" border="0">
+										<tr>
+											<td colspan="2">INTERCAMBIAR PUNTOS POR PREMIOS</td>
+										</tr>
+										<tr>
+											<td>
+												<div style="font-size: 9px; color: #c3c3c3;">premio | puntos</div>
+												<select id="premio" name="premio">
+													<option>premio...</option> {% for premio in premios %}
+													<option value="{{ premio.id }}">{{ premio.titulo }} | {{
+														premio.puesto }}</option>{% endfor %}
+
+											</select> <!-- id usuario --> <input type="hidden" id="id"
+												name="id" value="{{ jugador.id }}" />
+											</td>
+
+											<td width="250">
+												<button type="submit"
+													style="border: 0px; width: 30px; height: 30px;">+</button>
+											</td>
+										</tr>
+									</table>
+								</form></td>
+						</tr>
+
+					</table>
+				</td>
+			</tr>
+		</table>
+		{% endfor %}
+	</div>
+</article>
+{% endblock %}

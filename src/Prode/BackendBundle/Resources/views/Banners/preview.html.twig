@@ -1,0 +1,69 @@
+{% extends '::frontend.html.twig' %} {% block title %} Mundial 2014 -
+Segurviaje {% endblock %} {% block id 'index' %} {% block article %}
+<style>
+.head_rank {
+	font-family: tahoma;
+	font-weight: normal;
+	font-size: 11px;
+	height: 25px;
+	color: #ffffff;
+	background-color: #d81c0a;
+	width: 100%;
+	-webkit-border-top-right-radius: 10px; /*Para chrome y Safari*/
+	-webkit-border-bottom-left-radius: 10px; /*Para chrome y Safari*/
+	-moz-border-radius: 10px; /*Para Firefox*/
+	-o-border-radius: 10px; /*Para Opera*/
+	border-bottom-radius: 10px;
+}
+
+.linea1 {
+	font-family: arial;
+	font-size: 12px;
+}
+
+.linea1_empresa {
+	font-family: arial;
+	color: #d81c0a;
+	font-size: 12px;
+}
+
+.posto10 {
+	font-family: arial;
+	background-color: #ffffff;
+	color: #d81c0a;
+	padding-right: 10px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.posfrom10 {
+	font-family: arial;
+	background-color: #ffffff;
+	color: #c3c3c3;
+	padding-right: 10px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.puntos_ranking {
+	color: #d81c0a;
+	font-weight: bold;
+	font-family: arial;
+	float: left;
+	font-size: 18px;
+}
+
+.pts_ranking {
+	font-family: arial;
+	font-size: 12px;
+}
+</style>
+<article>
+{% for ban in banner %}
+	<div align="center"><img src="{{ asset('uploads/images/'~ ban.rutafoto )}}" width="{{ ban.width }}"  /></div>
+	
+	
+{% endfor %}
+
+</article>
+{% endblock %} 

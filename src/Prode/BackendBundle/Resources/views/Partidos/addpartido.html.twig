@@ -1,0 +1,126 @@
+{% extends '::backend.html.twig' %} {% block title %} Backend - Agregar Partido {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+
+
+<div class="container bs-docs-container">
+	
+ <div class="row">
+ <div class="col-md-3" role="complementary">
+          <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+            <ul class="nav bs-docs-sidenav">
+              
+<li><a href="{{ url('equipos_equipos') }}" >Equipos</a></li>
+<li><a href="{{ url('partidos_portada') }}" style="background-color:#f4f4f4;">Partidos</a></li>
+<li><a href="#transitions">Resultados</a></li>
+
+
+
+              
+            
+            
+          </nav>
+        </div>
+        <div class="col-md-9" role="main">
+		
+         <ul class="nav nav-tabs">
+  <li role="presentation" ><a href="{{ url('partidos_portada') }}">Partidos</a></li>
+  <li role="presentation" class="active"><a href="{{ url('partidos_add') }}">Agregar</a></li>
+
+</ul>
+<br>
+<div class="modal fade" id="myModalinac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Eliminar Partido?</h4>
+      </div>
+      <div class="modal-body">
+        Desea Eliminar este Partido?
+      </div>
+      <div class="modal-footer">
+	  <button type="button" class="btn btn-primary">Si</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>	
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">Panel heading</div---->
+<div id="form" style="padding: 15px;">
+
+<form action="{{ path('partidos_add') }}" method="post"
+		
+		
+	
+	
+	
+	
+	
+	 {{
+form_enctype(formulario) }}>
+		{{ form_errors(formulario) }}
+
+		{{ form_label(formulario.grupo, 'Grupo') }}
+		{{ form_errors(formulario.grupo) }} 
+		{{ form_widget(formulario.grupo, { 'attr': {'class': 'form-control'} }) }}</td>
+<br> 			
+		{{ form_label(formulario.ronda, 'Ronda') }}
+		{{ form_errors(formulario.ronda) }} 
+		{{ form_widget(formulario.ronda, { 'attr': {'class': 'form-control'} }) }}
+<br> 		
+		{{ form_label(formulario.equipoa, 'Equipo 1') }}
+		{{ form_errors(formulario.equipoa) }} 
+		{{ form_widget(formulario.equipoa, { 'attr': {'class': 'form-control'} }) }}
+<br> 		
+		{{ form_label(formulario.equipob, 'Equipo 2') }}
+		{{ form_errors(formulario.equipob) }} 
+		{{ form_widget(formulario.equipob, { 'attr': {'class': 'form-control'} }) }}
+<br> 		
+		{{ form_label(formulario.fecha, 'Fecha') }}
+		{{ form_errors(formulario.fecha) }} 
+		{{ form_widget(formulario.fecha, { 'attr': {'class': 'form-control'} }) }}
+<br> 		
+		{{ form_label(formulario.hora, 'Hora') }}
+		{{ form_errors(formulario.hora) }} 
+		{{ form_widget(formulario.hora, { 'attr': {'class': 'form-control'} }) }}
+<br> 		
+		{{ form_label(formulario.sede, 'Sede') }}
+		{{ form_errors(formulario.sede) }} 
+		{{ form_widget(formulario.sede, { 'attr': {'class': 'form-control'} }) }}
+<br> 
+		{{ form_widget(formulario) }}
+		 <button type="submit" class="btn btn-default"/>Agregar</button>
+				
+
+
+	</form>
+
+	
+</div>
+
+
+  
+</div>
+           
+  </div>
+	  
+</div> <!--- row ---->
+    </div> <!-- /container -->
+
+
+
+
+
+	<header><h3>AGREGAR PARTIDO</h3></header>
+	<div class="module_content">
+
+<div id="form">
+	
+</div>
+</div>
+
+</article>
+{% endblock %}

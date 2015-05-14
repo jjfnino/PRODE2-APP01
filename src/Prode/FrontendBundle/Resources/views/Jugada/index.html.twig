@@ -1,0 +1,34 @@
+{% extends '::frontend.html.twig' %}
+{% block title %} Bienvenido {% endblock %}
+{% block id 'index' %}
+{% block article %} <div class="inner cover" align="center">
+        <h1 class="cover-heading">Bienvenido a la PROMO COPA AMERICA</h1>
+        <p class="lead">Si a&uacute;n no se inscribi&oacute; por favor 
+               haga click en el bot&oacute;n y sino ingrese su usuario y contrase&ntilde;a en el siguiente recuadro.</p>
+			   <p class="lead">
+              <a href="{{ url('usuario_registro') }}" class="btn btn-lg btn-danger ">Registrarse</a>
+            </p>
+      </div>
+<hr>
+	  <div class="row">
+		<form action="{{ path('usuario_login_check') }}" class="form-signin" method="post">
+				 <h1 class="inner cover-heading">Ingresar</h1>
+				
+				<label for="inputEmail" class="sr-only">Email</label>
+				<input type="email" id="username" name="_username" class="form-control" placeholder="Email" required autofocus
+									 />
+				<label for="inputPassword" class="sr-only">Contrase&ntilde;a</label>
+				
+				<input type="password" id="password" name="_password" class="form-control" placeholder="Contrase&ntilde;a" required>
+				<div class="checkbox">
+				  <!-- ->label>
+					<input type="checkbox" value="remember-me"> Remember me
+				  </label----->
+				</div>
+				<button class="btn btn-lg btn-danger btn-block" type="submit">Ingresar</button>
+				<p align="center"><a href="{{ url('usuario_clavemail') }}" class="btn btn-link">Olvid&eacute; mi contrase&ntilde;a</a></p>
+			</form>
+
+		
+      </div>	 {% endblock %}
+{% block aside %} ... {% endblock %}

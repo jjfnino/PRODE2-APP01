@@ -1,0 +1,114 @@
+{# src/Cupon/UsuarioBundle/Resources/views/Default/registro.html.twig #}
+{% extends '::frontend.html.twig' %} {% block id 'usuario' %} {% block
+title %}Regístrate y gan&aacute; fabulosos premios{% endblock %} {%
+block article %}
+<style type="text/css">
+.reg_nombre {
+	font-family: Arial;
+	font-size: 12px;
+}
+
+button {
+	color: #ffffff;
+	/*text-shadow: 2px 2px #B5001E;*/
+	padding: 8px;
+	border: 1px solid #A10A0A;
+	border-radius: 4px;
+	background-color: #E80C0C;
+	box-shadow: 2px 2px 2px #888888;
+	width: 250px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+hr {
+	border-top: solid 1px #eeeeee;
+	border-bottom: 0;
+}
+
+.group_subhead {
+	padding: 8px;
+	font-style: italic;
+	color: #c3c3c3;
+}
+
+input {
+	border: 0px;
+}
+
+.input input {
+	border: solid 1px #c3c3c3;
+	height: 25px;
+	width: 200px;
+	text-indent: 5px;
+	text-align: left;
+	font-size: 12px;
+	border-radius: 8px;
+}
+
+.area input {
+	border: solid 1px #c3c3c3;
+	height: 25px;
+	width: 45px;
+	text-indent: 5px;
+	text-align: left;
+	font-size: 12px;
+	float: left;
+	border-radius: 8px;
+}
+
+.telefono input {
+	border: solid 1px #c3c3c3;
+	height: 25px;
+	width: 150px;
+	text-indent: 5px;
+	text-align: left;
+	font-size: 12px;
+	float: right;
+	border-radius: 8px;
+}
+
+.datetime {
+	color: #FF3053;
+}
+
+#grupos { /*overflow-x: scroll;
+	overflow-y: hidden;
+	height: 320px;*/
+	margin-top: 70px;
+}
+
+.lv_grupos {
+	border-left: 1px dashed #c3c3c3;
+}
+
+.asterisc {
+	color: red;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.error {
+	color: red;
+	font-size: 15px;
+	font-weight: bold;
+}
+.info{
+color: green;
+font-size: 15px;
+font-family: arial;
+}
+
+</style>
+<table cellspacing="1" cellpadding="1" border="0" width="580">
+			<tr>
+			<td class="titulos" colspan="9">Usuario inactivo</td>
+		</tr>
+	<tr>
+		<td class="prox_partido_det" colspan="3" align="center">Tu usuario se encuentra inactivo, si pasaron varios dias y a&uacute;n se encuentra de esta manera. 
+		Por favor no deje de contactarse con nosotros utilizando el formulario que se encuentra en la secci&oacute;n AYUDA y nos contactaremos con usted.</td>
+	</tr>
+	
+</table>
+
+{% endblock %} {% block aside %}{% endblock %}

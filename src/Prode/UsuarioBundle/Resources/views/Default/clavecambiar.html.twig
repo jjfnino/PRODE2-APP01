@@ -1,0 +1,175 @@
+{# src/Cupon/UsuarioBundle/Resources/views/Default/registro.html.twig #}
+{% extends '::frontend.html.twig' %} {% block id 'usuario' %} {% block
+title %}Regístrate y gan&aacute; fabulosos premios{% endblock %} {%
+block article %}
+<style type="text/css">
+.reg_nombre {
+	font-family: Arial;
+	font-size: 12px;
+}
+
+button {
+	color: #ffffff;
+	/*text-shadow: 2px 2px #B5001E;*/
+	padding: 8px;
+	border: 1px solid #A10A0A;
+	border-radius: 4px;
+	background-color: #E80C0C;
+	box-shadow: 2px 2px 2px #888888;
+	width: 250px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+hr {
+	border-top: solid 1px #eeeeee;
+	border-bottom: 0;
+}
+
+.group_subhead {
+	padding: 8px;
+	font-style: italic;
+	color: #c3c3c3;
+}
+
+input {
+	border: 0px;
+}
+
+.input input {
+	border: solid 1px #c3c3c3;
+	height: 25px;
+	width: 200px;
+	text-indent: 5px;
+	text-align: left;
+	font-size: 12px;
+	border-radius: 8px;
+}
+
+.area input {
+	border: solid 1px #c3c3c3;
+	height: 25px;
+	width: 45px;
+	text-indent: 5px;
+	text-align: left;
+	font-size: 12px;
+	float: left;
+	border-radius: 8px;
+}
+
+.telefono input {
+	border: solid 1px #c3c3c3;
+	height: 25px;
+	width: 150px;
+	text-indent: 5px;
+	text-align: left;
+	font-size: 12px;
+	float: right;
+	border-radius: 8px;
+}
+
+.datetime {
+	color: #FF3053;
+}
+
+#grupos { /*overflow-x: scroll;
+	overflow-y: hidden;
+	height: 320px;*/
+	margin-top: 70px;
+}
+
+.lv_grupos {
+	border-left: 1px dashed #c3c3c3;
+}
+
+.asterisc {
+	color: red;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.error {
+	color: red;
+	font-size: 15px;
+	font-weight: bold;
+}
+.info{
+color: green;
+font-size: 15px;
+font-family: arial;
+}
+
+</style>
+<div align="center">{{
+	render(controller('FrontendBundle:Banners:cajaBanners', {'seccion':
+	'REGISTROP'})) }}</div>
+<div align="center">{{
+	render(controller('FrontendBundle:Banners:cajaBanners', {'seccion':
+	'REGISTROT'})) }}</div>
+<table cellspacing="1" cellpadding="1" border="0" width="580">
+			<tr>
+			<td class="titulos" colspan="9">Nueva contrase&ntilde;a</td>
+		</tr>
+	<tr>
+		<td class="prox_partido_det" colspan="3" align="center">Hola {{ usuario.nombre }}!
+			Por favor Ingres&aacute; tu nueva contrase&ntilde;a mayor a 6 caracteres</td>
+	</tr>
+	<tr><td align="center">
+	{% set claveok = 0 %}
+			{% for mensaje in app.session.flashbag.get('info') %}
+<p class="info">{{ mensaje }}</p>
+{% set claveok = 1 %}
+{% endfor %}</td></tr>
+</table>
+{% if claveok == 0 %}
+<form action="{{ path('usuario_clavecambiar') }}" method="post"
+	
+	
+	
+	
+	
+	
+	
+	
+	 {{
+form_enctype(formulario) }}>
+	{{ form_errors(formulario) }}
+
+	<table align="center" cellspacing="5" cellpadding="5">
+
+		<tr>
+			<td class="reg_nombre">
+			<!-- -GUARDO ID USUARIO -->
+			<input type="hidden" value="{{ i }}" id="id" name="id" />
+			<input type="hidden" value="{{ t }}" id="salt" name="salt" />{{ form_label(formulario.password.pass,
+				'Password') }}<span class="asterisc">*</span>
+			</td>
+			<td><font face="arial" size="2" color="red">{{ form_errors(formulario.password.pass) }}</font>
+				<div class="input">{{ form_widget(formulario.password.pass) }}</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="reg_nombre">{{ form_label(formulario.password.confirm,
+				'Confirmar Password') }}<span class="asterisc">*</span>
+			</td>
+			<td>{{ form_errors(formulario.password.confirm) }}
+				<div class="input">{{ form_widget(formulario.password.confirm) }}</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td height="10"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center" class="reg_nombre">{{
+				form_widget(formulario) }}
+				<button type="submit" />Guardar
+				</button>
+			</td>
+		</tr>
+	</table>
+
+
+</form>
+{% endif %}
+{% endblock %} {% block aside %}{% endblock %}

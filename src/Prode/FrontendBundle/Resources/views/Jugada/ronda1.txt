@@ -1,0 +1,166 @@
+<div id="results_partidos">
+
+			<div id="tabs" class="tabs">
+				<ul>
+
+
+					{% for grupo in grupos | sort('grupo') %}
+					<li><a href="#tab-{{ grupo.grupo }}">GRUPO {{ grupo.grupo }}</a></li>
+					{% endfor %}
+
+				</ul>
+				<div class="tabscontent">
+					{% set count = '1' %} {% for grupo in grupos | sort('grupo') %}
+					<div id="tab-{{ grupo.grupo }}">
+						<div class="content">
+
+
+							<table cellspacing="1" cellpadding="1" border="0" width="580">
+								<tr>
+									<td class="mi_prode" colspan="8" align="center">MI JUGADA</td>
+									<td class="el_mundial" colspan="3" align="center">COPA AMERICA</td>
+
+
+								</tr>
+								<tr>
+									<td class="head_prode">Dia / Hora</td>
+									<td class="head_prode"></td>
+									<td class="head_prode">Pais</td>
+									<td class="head_prode">Goles</td>
+									<td class="head_prode"></td>
+									<td class="head_prode">Goles</td>
+									<td class="head_prode">Pais</td>
+									<td class="head_prode"></td>
+									<!-- >td class="head_prode" align="center">Estado</td--->
+									<td class="head_prode" align="center" width="50">Resultado</td>
+									<td class="head_prode" align="center">Puntos</td>
+
+								</tr>
+								
+								{% for allpartidos in partidos | sort('fecha') %} {% if
+								allpartidos.grupo == grupo.grupo %} {% set resultado = false %}
+								<tr>
+									<td class="datetime">{{ allpartidos.fecha|date('d/m') }} / {{
+										allpartidos.hora|date('H:i') }}</td>
+									<td class="td_banderas"><img src="{{ asset('uploads/images/' ~ allpartidos.equipoa.rutaFoto) }}" width="20" />
+									</td>
+									<td class="paisesPronostico">{{ allpartidos.equipoa }}</td>
+									<td>
+									{% set golesa = '' %}
+									{% set golesb = '' %}
+									{% set puntos = '' %}
+									{% for miprode in mipronostico if miprode.idpartido == allpartidos.id %}
+												      			{% set golesa = miprode.golesa %}
+												      			{% set golesb = miprode.golesb %}
+									{% endfor %}
+									<form action="{{ path('jugada_guardar') }}" method="post"
+									 name="register" id="register"> 
+										<input type="hidden" class="pronostico" id="id_partido"
+												   name="id_partido" value="{{ allpartidos.id }}">
+											
+											<input class="pronostico" 
+												   type="text" 
+												   onkeypress='validate(event)'
+												   id="golesa"
+												   name="golesa"
+												   value="{{ golesa }}"
+												   maxlength="1"
+											
+										 {% if "now"|date('Y-m-d') >= allpartidos.fecha|date('Y-m-d')  or allpartidos.estado == 0 %}
+											autocomplete="off" 
+											readonly="readonly" 
+											style="background-color: #f2f2f2;"
+										 {% endif %} >
+								    
+									</td>
+									<td class="vs">vs.</td>
+									<td>
+										 	<input class="pronostico" 
+												   type="text" 
+												   onkeypress='validate(event)'
+												   id="golesb"
+												   name="golesb"
+												   value="{{ golesb }}" 
+												   maxlength="1"
+											
+											{% if "now"|date('Y-m-d') >= allpartidos.fecha|date('Y-m-d') or allpartidos.estado == 0 %}
+												autocomplete="off" 
+												readonly="readonly"
+												style="background-color: #f2f2f2;"        
+										    {% endif %} > 
+									</td>
+									<td class="paisesPronostico">{{ allpartidos.equipob }}</td>
+									<td class="td_banderas"><img src="{{ asset('uploads/images/' ~ allpartidos.equipob.rutaFoto) }}" width="20" />
+									</td>
+									<!-- >td class="estado" align="center">{% set hoy =
+										"now"|date('d/m') %} {% if hoy ==
+										allpartidos.fecha|date('d/m') %} {% else %} sin<br>comenzar {%
+										endif %}
+									</td---->
+									<td class="head_prode">
+										<table cellpadding="1" cellspacing="1" border="0" width="50">
+											<tr>
+												<td align="center"><img src="{{ asset('uploads/images/' ~ allpartidos.equipoa.rutaFoto) }}" width="15" /></td>
+												<td></td>
+												<td align="center"><img src="{{ asset('uploads/images/' ~ allpartidos.equipob.rutaFoto) }}" width="15" /></td>
+											</tr>
+
+											<tr>
+												<td align="center" bgcolor="#c3c3c3" height="15" style="font-size: 11px;"><font
+													color="#000000">{{ allpartidos.golesa}}</font></td>
+												<td width="1"></td>
+												<td align="center" bgcolor="#c3c3c3"><font color="#000000" style="font-size: 11px;">
+														{{ allpartidos.golesb }}</font></td>
+											</tr>
+										</table>
+									</td>
+									<td align="center">
+									{% if "now"|date('Y-m-d') >= allpartidos.fecha|date('Y-m-d') or allpartidos.estado == 0 %}
+		  																		<table cellpadding="9">
+											<tr>
+												<td class="puntos">
+												{% set puntos = 0 %}
+												{% if ( golesa != '' and golesb != '' ) or ( golesa == '0' or golesb == '0' ) %}
+												<!---- RESULTADO EXACTO ----->
+													{% if allpartidos.golesa == golesa and allpartidos.golesb == golesb %}
+												
+														{% set puntos = puntos + 4 %}
+													{% elseif allpartidos.golesa == golesa or allpartidos.golesb == golesb %}	
+														{% set puntos = puntos + 2 %}
+													{% endif %}
+												
+													{% if allpartidos.golesa > allpartidos.golesb and golesa > golesb or allpartidos.golesa < allpartidos.golesb and golesa < golesb %}
+														{% set puntos = puntos + 5 %}
+												
+													{% elseif allpartidos.golesa == allpartidos.golesb and golesa == golesb %}	
+												
+														{% set puntos = puntos + 5 %}
+													{% endif %}
+												{% endif %}
+												{{ puntos }}
+												</td>
+											</tr>
+										</table>
+		  							        
+									{% else %}
+									<button type="submit" name="submit_partido" title="Guardar resultado" ><img src="{{ asset('bundles/frontend/images/iconos/iSave.png') }}" /></button>
+								    
+									{% endif %}  
+										
+									</form>	
+									</td>
+
+								</tr>
+								{% set count = count + '1' %} {% endif %} {% endfor %}
+								
+							</table>
+
+
+
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+		</div>

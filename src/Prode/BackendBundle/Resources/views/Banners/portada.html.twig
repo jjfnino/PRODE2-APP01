@@ -1,0 +1,72 @@
+{% extends '::backend.html.twig' %} {% block title %} Mundial 2014 -
+Segurviaje {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+	
+	<header><h3>BANNERS</h3></header>
+	<div class="module_content">
+	<table cellspacing="1" cellpadding="5" border="0" width="100%">
+
+			<tr>
+				<td class="backend_descripcion" colspan="9">&bull; Aqu&iacute; podr&aacute; visualizar los banners ingresados, activarlos (<img
+					src="{{ asset('images/iconos/iActivo.png') }}" width="15" />), eliminarlos (<img
+					src="{{ asset('images/iconos/iTrash.gif') }}" width="15" />), editarlos (<img
+					src="{{ asset('images/iconos/iEdit.png') }}" width="15" />) y visualizar una vista previa con el bot&oacute;n (<img src="{{ asset('images/iconos/iPreview.png') }}"
+					width="15"  title="Previsualizar" />) 
+				</td>
+			</tr>
+		</table>
+	<table cellspacing="1" cellpadding="1" border="0" width="580">
+		
+		<tr>
+			<td>
+{% if rol == 'ROLE_ADMIN' %}
+			<a href="add" width="150" class="add"><img
+					src="{{ asset('images/iconos/iAdd.png') }}" title="Agregar Banner"
+					width="15" valign="middle" />&nbsp;&nbsp;&nbsp;AGREGAR</a></td>
+{% endif %}
+					</tr>
+	</table>
+	<table cellspacing="5" cellpadding="5" border="0">
+		<tr>
+			<td align="center"><b>#</b></td>
+			<td><b>Titulo</b></td>
+			<td><b>Seccion</b></td>
+			<td><b>Orden</b></td>
+			<td><b>Estado</b></td>
+			<td><b>Foto</b></td>
+			<td></td>
+			<td></td>
+		</tr>
+		{% set count = 1 %} {% for banner in banners | sort('puesto') %}
+		<tr>
+			<td align="center"><div class="count">{{
+				count }}</div></td>
+			<td>{{ banner.titulo }}</td>
+			<td>{{ banner.seccion }}</td>
+			<td>{{ banner.orden }}</td>
+			{% if rol == 'ROLE_ADMIN' %}
+			<td align="center" class="activarResultado">{% if banner.estado ==
+				'1' %} <a href="estado?i={{ banner.id }}&e=0"><img
+					src="{{ asset('images/iconos/iActivo.png') }}" width="15" /></a> {%
+				else %} <a href="estado?i={{ banner.id }}&e=1"><img
+					src="{{ asset('images/iconos/iInactivo.png') }}" width="15" /></a>
+				{% endif %}
+			</td>
+			{% endif %}
+			<td><img src="../../uploads/images/{{ banner.rutafoto }}"
+				width="40" height="40" /></td>
+				{% if rol == 'ROLE_ADMIN' %}
+			<td><a href="edit/{{ banner.id }}"><img
+					src="{{ asset('images/iconos/iEdit.png') }}" width="15" /></a></td>
+			<td><a href="del/{{ banner.id }}"><img
+					src="{{ asset('images/iconos/iTrash.gif') }}" width="15" /></a></td>
+					{% endif %}
+			<td><a href="prev?i={{ banner.id }}" target="_blank"><img src="{{ asset('images/iconos/iPreview.png') }}"
+					width="20" title="Previsualizar" /></a></td>
+		</tr>
+		<tr><td colspan="12" height="1" style="border-top: 1px solid #c3c3c3;"></td></tr>
+		{% set count = count + 1 %} {% endfor %}
+	</table>
+</div>
+</article>
+{% endblock %}

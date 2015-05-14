@@ -1,0 +1,296 @@
+{% extends '::backend.html.twig' %} {% block title %} Mundial 2014 -
+Segurviaje {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+	
+	<header><h3>PARTIDOS</h3></header>
+	<div class="module_content">
+	<table cellspacing="1" cellpadding="5" border="0" width="100%">
+		
+		<tr>
+			<td class="" colspan="9" style="font-size: 15px;"><b>1era Ronda</b></td>
+		</tr>
+	</table>
+
+	<style>
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+.content *:first-child {
+	margin-top: 0;
+}
+
+.content *:last-child {
+	margin-bottom: 0;
+}
+
+/*clearfix*/
+.clearfix:before,.clearfix:after {
+	display: table;
+	content: "";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+/*tabs ul*/
+.tabs ul {
+	margin: 0;
+	padding: 0;
+}
+
+/*tabs li*/
+.tabs li {
+	position: relative;
+	display: inline-block;
+	margin: 1px .2em 0 0;
+	padding: 0;
+	list-style: none;
+	white-space: nowrap;
+}
+
+.tabs li.active a {
+	position: relative;
+	z-index: 10;
+	margin-bottom: -1px;
+	padding-bottom: 6px;
+	background: #FAFAFA;
+	color: #d81c0a;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+}
+
+/*tabs a*/
+.tabs a {
+	display: inline-block;
+	margin-bottom: -5px;
+	padding: 5px;
+	padding-bottom: 10px;
+	border: 1px solid #DFDFDF;
+	border-bottom: none;
+	border-radius: 5px 5px 0 0;
+	color: #ffffff;
+	background: #d81c0a;
+}
+
+/*content*/
+.tabs .tabscontent {
+	position: relative;
+	display: block;
+	float: left;
+	border: 1px solid #DFDFDF;
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.tabs .tabscontent .active {
+	position: relative;
+	z-index: 200;
+	display: inline-block;
+	border-radius: 5px;
+	background: #ffffff;
+}
+
+/*first tab with border-radius 0*/
+.tabs .tabscontent:first-child,.tabs .tabscontent .active:first-child {
+	border-top-left-radius: 0;
+}
+
+.tabs .content {
+	padding: 20px;
+}
+</style>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<script>
+
+	function validate(evt) {
+		  var theEvent = evt || window.event;
+		  var key = theEvent.keyCode || theEvent.which;
+		  key = String.fromCharCode( key );
+		  var regex = /[0-9]|\./;
+		  if( !regex.test(key) ) {
+		    theEvent.returnValue = false;
+		    if(theEvent.preventDefault) theEvent.preventDefault();
+		  }
+		}
+		
+	jQuery(document).ready(function($) {
+
+		$('#tabs .tabscontent>div').not('div:first').hide();
+		$('#tabs ul li:first,#tabs .tabscontent>div:first').addClass('active');
+
+		$('#tabs ul li a').click(function(){
+
+			var currentTab = $(this).parent();
+			if(!currentTab.hasClass('active')){
+				$('#tabs ul li').removeClass('active');				
+
+				$('#tabs .tabscontent>div').slideUp('fast').removeClass('active');
+
+				var currentcontent = $($(this).attr('href'));
+				currentcontent.slideDown('fast', function() {
+					currentTab.addClass('active');
+					currentcontent.addClass('active');
+				});
+			}
+			return false;							
+		});
+	});
+</script>
+
+		
+			
+
+
+
+					<table cellspacing="1" cellpadding="1" border="0" width="680">
+						
+						<tr>
+							<td class="head_prode">Dia</td>
+							<td class="head_prode">Hora</td>
+							<td class="head_prode"></td>
+							<td class="head_prode">Pais</td>
+							<td class="head_prode">Goles</td>
+							<td class="head_prode"></td>
+							<td class="head_prode">Goles</td>
+							<td class="head_prode">Pais</td>
+							<td class="head_prode"></td>
+							<td class="head_prode" align="right">Sede</td>
+							<td></td>
+							<td></td>
+							<td>Acierto Ganador</td>
+							<td>Acierto Exacto</td>
+						</tr>
+						{% set banderaa = ' ' %}
+						{% set banderab = ' ' %}
+						{% set count = '1' %}
+						{% for allpartidos in partidos  %}
+						
+						{% if allpartidos.equipoa == null %}
+						{% set banderaa = ' ' %}
+						{% else %}
+						{% set banderaa = allpartidos.equipoa.bandera %}
+						{% endif %}
+
+						
+						{% if allpartidos.equipob == null %}
+						{% set banderab = ' ' %}
+						{% else %}
+						{% set banderab = allpartidos.equipob.bandera %}
+						{% endif %}
+						
+						<tr>
+							<td class="datetime">{{ allpartidos.grupo }}</td>
+							<td class="datetime">{{ allpartidos.hora|date('H:i') }}</td>
+							<td class="td_banderas"><img src="{{ asset('uploads/images/' ~ allpartidos.equipoa.rutaFoto) }}" width="25" />
+							</td>
+							<td class="paisesPronostico">{{ allpartidos.equipoa }}</td>
+							<td class="input_result">
+							<form action="{{ path('mundial_partidos') }}" method="post"
+		onsubmit="return validateForm();" name="register" id="register">
+		<input class="pronostico" type="hidden" id="idpartido" name="idpartido" value="{{ allpartidos.id }}"  >
+		<input class="pronostico" type="text" onkeypress='validate(event)'
+										id="golesa" name="golesa" value="{{ allpartidos.golesa }}" autocomplete="off" maxlength="1" ></td>
+									<td class="vs">vs.</td>
+									<td class="input_result"><input class="pronostico" type="text" onkeypress='validate(event)'
+										id="golesb" name="golesb" value="{{ allpartidos.golesb }}" autocomplete="off" maxlength="1"></td>
+							<td class="paisesPronostico">{{ allpartidos.equipob }}</td>
+							<td class="td_banderas"><img src="{{ asset('uploads/images/' ~ allpartidos.equipob.rutaFoto) }}" width="25" />
+							</td>
+							<td class="ciudadesPronostico">{{ allpartidos.sede }}</td>
+							<td align="center" class="activarResultado" >{% if allpartidos.estado == '1' %}
+							<a href="estado?i={{ allpartidos.id }}&e=0&r=1"><img src="{{ asset('images/iconos/iActivo.png') }}" width="15" /></a>
+							{% else %}
+							<a href="estado?i={{ allpartidos.id }}&e=1&r=1"><img src="{{ asset('images/iconos/iInactivo.png') }}" width="15" /></a>
+							{% endif %}</td>
+							<td class="activarResultado">{# Prode activo por administrador #}
+							
+							<button type="submit" name="partidos_submit"><img src="{{ asset('images/iconos/iSave.png') }}" /></button>
+							</form>
+							</td>
+							<td class="ciudadesPronostico"></td>
+							<td class="ciudadesPronostico"></td>
+						</tr>
+						
+						{% endfor %}
+					</table>
+
+
+
+
+
+<br><br>
+<!-- div id="form">
+	<form action="{{ path('mundial_partidos') }}" method="post"
+		
+		
+	
+	
+	
+	
+	
+	 {{
+form_enctype(formulario) }}>
+		{{ form_errors(formulario) }}
+
+		<table class="partidos">
+			<tr>
+				<td width="150">{{ form_label(formulario.grupo, 'Grupo') }}</td>
+				<td>{{ form_errors(formulario.grupo) }} {{
+					form_widget(formulario.grupo) }}</td>
+			</tr>
+			<tr>
+				<td width="150">{{ form_label(formulario.ronda, 'Ronda') }}</td>
+				<td>{{ form_errors(formulario.ronda) }} {{
+					form_widget(formulario.ronda) }}</td>
+			</tr>
+			<tr>
+				<td width="150">{{ form_label(formulario.equipoa, 'Equipo 1') }}</td>
+				<td>{{ form_errors(formulario.equipoa) }} {{
+					form_widget(formulario.equipoa) }}</td>
+			</tr>
+			<tr>
+				<td width="150">{{ form_label(formulario.equipob, 'Equipo 2') }}</td>
+				<td>{{ form_errors(formulario.equipob) }} {{
+					form_widget(formulario.equipob) }}</td>
+			</tr>
+			<tr>
+				<td width="150">{{ form_label(formulario.fecha, 'Fecha') }}</td>
+				<td>{{ form_errors(formulario.fecha) }} {{
+					form_widget(formulario.fecha) }}</td>
+			</tr>
+			<tr>
+				<td width="150">{{ form_label(formulario.hora, 'Hora') }}</td>
+				<td>{{ form_errors(formulario.hora) }} {{
+					form_widget(formulario.hora) }}</td>
+			</tr>
+			<tr>
+				<td width="150">{{ form_label(formulario.sede, 'Sede') }}</td>
+				<td>{{ form_errors(formulario.sede) }} {{
+					form_widget(formulario.sede) }}</td>
+			</tr>
+			<tr>
+				<td height="10"></td>
+			</tr>
+			<tr>
+				<td>{{ form_widget(formulario) }}
+					<button type="submit" />Agregar
+					</button>
+				</td>
+			</tr>
+		</table>
+
+
+	</form>
+</div---->
+</div>
+</article>
+{% endblock %}

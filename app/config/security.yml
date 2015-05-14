@@ -1,0 +1,64 @@
+security:
+      firewalls:
+          backend:
+                  pattern: ^/backend
+                  #provider: administradores
+                  anonymous: ~
+                  form_login: 
+                    login_path: /backend/login
+                    check_path: /backend/login_check
+                    default_target_path: /index
+                  logout:
+                    path: /backend/logout
+                    target: /index
+                  remember_me:
+                    key: prodebackend
+                    lifetime: 600  
+          frontend:
+                  pattern: ^/*
+                  anonymous: ~
+                  form_login: 
+                    login_path: /usuario/login
+                    check_path: /usuario/login_check
+                    default_target_path: /portada
+                  logout:
+                    path: /usuario/logout
+                    target: /index
+                  remember_me:
+                    key: prode
+                    lifetime: 600
+      access_control:
+             #- { path: ^/usuario/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             #- { path: ^/usuario/registro, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             #- { path: ^/usuario/clavemail, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             - { path: ^/backend/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             #- { path: ^/backend/usuarios, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             #- { path: ^/backend/eq/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             #- { path: ^/backend/partidos/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             #- { path: ^/backend/premios/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             #- { path: ^/backend/sales/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             #- { path: ^/backend/ban/*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+             - { path: ^/backend/*, roles: ROLE_SUPER_ADMIN }
+             - { path: ^/jugada*, roles: ROLE_USUARIO }
+             - { path: ^/miprode*, roles: ROLE_USUARIO }
+             - { path: ^/ask*, roles: ROLE_USUARIO }
+             - { path: ^/misegunda, roles: ROLE_USUARIO }
+       
+      providers:
+             usuarios:
+                   entity: { class: Prode\UsuarioBundle\Entity\Usuario, property: email }
+             administradores:
+                   entity: { class: Prode\UsuarioBundle\Entity\Usuario, property: email }
+                   #memory:
+                   #   users:
+                   #     #admin: { password: 1234, roles: ROLE_ADMIN }
+                   #     jose: { password: 1234, roles: ROLE_ADMIN }
+                   #     avidela: { password: Eti36Ru/pWG6WfoIPiDFUBxUuyvgMA4L8+LLuGbGyqV9ATuT9brCWPchBqX5vFTF+DgntacecW+sSGD+GZts2A==, roles: ROLE_SUPER_ADMIN }
+                   #     segurarg: { password: Eti36Ru/pWG6WfoIPiDFUBxUuyvgMA4L8+LLuGbGyqV9ATuT9brCWPchBqX5vFTF+DgntacecW+sSGD+GZts2A==, roles: ROLE_ADMIN }
+      encoders:
+            Prode\UsuarioBundle\Entity\Usuario: sha512 #plaintext
+            Symfony\Component\Security\Core\User\User: sha512
+      
+      role_hierarchy:
+        ROLE_ADMIN:       ROLE_USUARIO
+        ROLE_SUPER_ADMIN: [ROLE_USUARIO, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]                        

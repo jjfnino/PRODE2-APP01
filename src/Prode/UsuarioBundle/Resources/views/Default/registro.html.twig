@@ -1,0 +1,110 @@
+{# src/Cupon/UsuarioBundle/Resources/views/Default/registro.html.twig #}
+{% extends '::frontend.html.twig' %} {% block id 'usuario' %} {% block
+title %}Regístrate y gan&aacute; fabulosos premios{% endblock %} {%
+block article %}
+
+
+	<div align="center">{# render(controller('FrontendBundle:Banners:cajaBanners', {'seccion': 'REGISTROP'})) #}</div>
+<div align="center">{# render(controller('FrontendBundle:Banners:cajaBanners', {'seccion': 'REGISTROT'})) #}</div>
+<div align="center">
+<div class="row"  style="background-color: #ffffff; padding: 15px; width: 90%;" align="center"><h2>Ingrese su datos y comience a participar de esta gran promo!</h2></div>
+<div class="row" style="background-color: #ffffff; padding: 15px; width: 90%;" >
+<div class="col-md-6"  align="left">
+<form action="{{ path('usuario_registro') }}" method="post"
+	
+	
+	
+	
+	
+	
+	
+{{ form_enctype(formulario) }}
+{{ form_errors(formulario) }}>
+
+{% if pais == 'co' %} {% set apodo = 'Usuario' %} {% else %} {% set apodo = 'Apodo' %} {% endif %} 			
+<label >{{ form_label(formulario.apodo, apodo) }}<span class="asterisc">*</span></label>
+{{ form_errors(formulario.apodo) }}
+{{ form_widget(formulario.apodo, { 'attr': {'class': 'form-control'} }) }}<font style="font-family:arial; font-size: 11px; color="#c3c3c3;">Mayor a 6 caracteres</font>
+<br>
+
+{{ form_label(formulario.nombre,'Nombre') }}<span class="asterisc">*</span>
+{{ form_errors(formulario.nombre) }}
+{{ form_widget(formulario.nombre, { 'attr': {'class': 'form-control'} }) }}
+
+{{ form_label(formulario.apellido, 'Apellido')}}<span class="asterisc">*</span>
+{{ form_errors(formulario.apellido) }}
+{{ form_widget(formulario.apellido, { 'attr': {'class': 'form-control'} }) }}
+
+{{ form_label(formulario.fecha_nacimiento, 'Fecha de Nacimiento') }}<span class="asterisc">*</span>
+{{ form_errors(formulario.fecha_nacimiento) }} 
+{{ form_widget(formulario.fecha_nacimiento, { 'attr': {'class': 'form-control'} }) }}
+
+{% if pais == 'co' %} {% set dni = 'Cedula' %} {% else %} {% set dni = 'DNI' %} {% endif %} 
+{{ form_label(formulario.dni, dni) }}<span class="asterisc">*</span>
+{{ form_errors(formulario.dni) }}
+{{ form_widget(formulario.dni, { 'attr': {'class': 'form-control'} }) }}
+			
+{{ form_label(formulario.sexo, 'Sexo') }}
+{{ form_errors(formulario.sexo) }} 
+{{ form_widget(formulario.sexo, { 'attr': {'class': 'form-control'} }) }}
+
+</div>
+
+<div class="col-md-6" align="left">
+{{ form_label(formulario.email, 'E-mail') }}<span class="asterisc">*</span>
+{{ form_errors(formulario.email) }}
+{{ form_widget(formulario.email, { 'attr': {'class': 'form-control'} }) }}
+<br>
+<div class="form-inline" >
+
+{{ form_label(formulario.telefono, 'Area/Telefono') }}<span class="asterisc">*</span>
+{{ form_errors(formulario.telefono) }}
+{{ form_widget(formulario.area, { 'attr': {'class': 'form-control'} }) }}
+{{ form_widget(formulario.telefono, { 'attr': {'class': 'form-control'} }) }}
+</div>
+{{ form_label(formulario.password.pass, 'Password') }}<span class="asterisc">*</span>
+{{ form_errors(formulario.password.pass) }}
+{{ form_widget(formulario.password.pass, { 'attr': {'class': 'form-control'} }) }}<font style="font-family:arial; font-size: 11px; color="#c3c3c3;">Mayor a 6 caracteres</font>
+<br>
+{{ form_label(formulario.password.confirm, 'Confirmar Password')}}<span class="asterisc">*</span>
+{{ form_errors(formulario.password.confirm) }}
+{{ form_widget(formulario.password.confirm, { 'attr': {'class': 'form-control'} }) }}
+
+<label>{{ form_label(formulario.ciudad, 'Ciudad') }}</label>
+{{ form_errors(formulario.ciudad) }}
+{{ form_widget(formulario.ciudad, { 'attr': {'class': 'form-control'} }) }}
+
+		<!---tr>
+			<td class="reg_nombre">{{ form_label(formulario.pais, 'Pais de residencia') }}</td>
+			<td>{{ form_errors(formulario.pais) }} {{
+				form_widget(formulario.pais) }}</td>
+		</tr--->
+		<!-- -tr>
+			<td>{{ form_label(formulario.foto, 'Foto') }}</td>
+			<td align="left">{{ form_errors(formulario.foto) }}
+				{{ form_widget(formulario.foto) }}
+			</td>
+		</tr---->
+{{ form_label(formulario.empresa, 'Empresa') }}<span class="asterisc">*</span>
+{{ form_errors(formulario.empresa) }}
+{{ form_widget(formulario.empresa, { 'attr': {'class': 'form-control'} }) }}
+
+
+{{ form_errors(formulario.roles) }}
+{{ form_widget(formulario.roles, { 'attr': {'hidden': 'true'} }) }}
+		
+<input type="text" hidden="true" value="hola" />
+<label>{{ form_errors(formulario.deacuerdo) }}
+{{ form_widget(formulario.deacuerdo) }}
+<a href="{# url('pagina_reglamento') #}" target="_blank" style="color: #d81c0a;" >Acepto Bases y Condiciones</a>
+</label>
+{{ form_widget(formulario) }}
+				<button type="submit" class="btn btn-danger" />Reg&iacute;strate
+				</button>
+
+</form>
+<br><br><br>
+</div>
+</div>
+</div>
+{% endblock %} {% block aside %}{% endblock %}

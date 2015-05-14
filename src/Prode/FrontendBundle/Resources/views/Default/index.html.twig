@@ -1,0 +1,58 @@
+{% extends '::frontend.html.twig' %}
+{% block title %} Bienvenido {% endblock %}
+{% block id 'index' %}
+{% block article %} 
+<!-- Modal -->
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ingresar</h4>
+      </div>
+      <form action="{{ path('usuario_login_check') }}" class="form-signin" method="post">
+		
+      <div class="modal-body" >
+        		 <!-- >h1 class="inner cover-heading">Ingresar</h1---->
+				
+				<label for="inputEmail" class="sr-only">Email</label>
+				<input type="email" id="username" name="_username" class="form-control" placeholder="Email" required autofocus
+									 />
+				<label for="inputPassword" class="sr-only">Contrase&ntilde;a</label>
+				
+				<input type="password" id="password" name="_password" class="form-control" placeholder="Contrase&ntilde;a" required>
+				<div class="checkbox">
+				  <!-- ->label>
+					<input type="checkbox" value="remember-me"> Remember me
+				  </label----->
+				</div>
+				<!-- -button class="btn btn-lg btn-danger btn-block" type="submit">Ingresar</button----->
+				
+			
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="inner cover" align="center">
+        <h1 class="cover-heading">Bienvenido a la PROMO COPA AMERICA</h1>
+       
+			   <p class="lead">
+              <img src="http://3.bp.blogspot.com/-ID7LnBftdfY/VKK9FfMW5jI/AAAAAAAAx54/3XcGY5ElFzw/s1600/logo.jpg" width="250" border="5" style="border: 15px solid #ffffff;" />
+            	<div class="row" align="center">
+	  <a href="" data-toggle="modal" data-target="#myModal" align="center" style="color:#ffffff">INGRESAR</a> &nbsp;&nbsp;&nbsp;<font color="#ffffff">|</font>&nbsp;&nbsp;&nbsp;<a href="{{ url('usuario_registro') }}"  align="center" style="color:#ffffff">REGISTRATE</a>
+<br><br>
+<p align="center"><a href="{{ url('usuario_clavemail') }}" class="btn btn-link" style="color:#ffffff">Olvid&eacute; mi contrase&ntilde;a</a></p>
+		
+      </div>	
+            </p>
+      </div>
+<hr>
+	   {% endblock %}
+{% block aside %} ... {% endblock %}

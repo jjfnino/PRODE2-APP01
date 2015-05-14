@@ -1,0 +1,89 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Usuario list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Dni</th>
+                <th>Password</th>
+                <th>Empresa</th>
+                <th>Estado</th>
+                <th>Apodo</th>
+                <th>Comision</th>
+                <th>Sexo</th>
+                <th>Fecha_nacimiento</th>
+                <th>Pais</th>
+                <th>Ciudad</th>
+                <th>Telefono</th>
+                <th>Equipo</th>
+                <th>Fecha_alta</th>
+                <th>Fecha_modificacion</th>
+                <th>Salt</th>
+                <th>Token</th>
+                <th>Deacuerdo</th>
+                <th>Prodecomp</th>
+                <th>Puntos</th>
+                <th>Ingresos</th>
+                <th>Rutafoto</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('usuario_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.apellido }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.dni }}</td>
+                <td>{{ entity.password }}</td>
+                <td>{{ entity.empresa }}</td>
+                <td>{{ entity.estado }}</td>
+                <td>{{ entity.apodo }}</td>
+                <td>{{ entity.comision }}</td>
+                <td>{{ entity.sexo }}</td>
+                <td>{% if entity.fechanacimiento %}{{ entity.fechanacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.pais }}</td>
+                <td>{{ entity.ciudad }}</td>
+                <td>{{ entity.telefono }}</td>
+                <td>{{ entity.equipo }}</td>
+                <td>{% if entity.fechaalta %}{{ entity.fechaalta|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechamodificacion %}{{ entity.fechamodificacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.salt }}</td>
+                <td>{{ entity.token }}</td>
+                <td>{{ entity.deacuerdo }}</td>
+                <td>{{ entity.prodecomp }}</td>
+                <td>{{ entity.puntos }}</td>
+                <td>{{ entity.ingresos }}</td>
+                <td>{{ entity.rutafoto }}</td>
+                <td>{{ entity.roles }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('usuario_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('usuario_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('usuario_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

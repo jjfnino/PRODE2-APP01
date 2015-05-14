@@ -1,0 +1,19 @@
+<table cellspacing="5" cellpadding="5" border="0" width="580">
+		<tr>
+		<td align="left">
+		<img src="http://segurviajeesmundial.com/images/encabezado_mail.jpg"/>
+		</td>
+	</tr>
+</table>
+{% for usr in usuario %}
+<table cellspacing="1" cellpadding="1" border="0" width="580">
+	
+	<tr>
+		<td>Hola {{ usr.nombre }}, <br>Para renovar su clave por favor haga 
+	<a href="http://www.{{ pais }}.segurviajeesmundial.com/clavecambiar?i={{ usr.id }}&t={{ usr.salt }} ">click aqui</a><br><br>
+Coordiales Saludos,<br>
+<b>El equipo de SEGURVIAJE</b>
+	</td>
+	</tr>
+</table>
+{% endfor %}

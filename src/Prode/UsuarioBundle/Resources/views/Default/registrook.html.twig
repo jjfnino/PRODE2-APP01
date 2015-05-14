@@ -1,0 +1,33 @@
+{# src/Cupon/UsuarioBundle/Resources/views/Default/registro.html.twig #}
+{% extends '::frontend.html.twig' %} {% block id 'usuario' %} {% block
+title %}Felicitaciones!{% endblock %} {% block article %}
+<style>
+.detalle {
+	font-family: lucida sans unicode;
+	font-size: 15px;
+	width: 100%;
+}
+</style>
+<div align="center">
+
+<div class="row"  style="background-color: #ffffff; padding: 15px; width: 90%;" align="center"><h3>REGISTRO USUARIO CORRECTO!</h3></div>
+<div class="row"  style="background-color: #ffffff; padding: 15px; width: 90%;" align="center">
+<table cellspacing="5" cellpadding="5" border="0" >
+	<tr>
+		<td class="titulos" ></td>
+	</tr>
+	{% if activacion == true %}
+	<tr>
+		<td class="detalle">Felicitaciones, le enviamos un email para validar su cuenta,
+			ingrese en el mismo y siga las instrucciones<br></td>
+	</tr>
+	{% else %}
+	<tr>
+		<td class="detalle">Felicitaciones! Usted esta a un paso de comenzar a jugar. <br>Estamos validando sus datos y pr&oacute;ximamente recibira un e-mail con indicaciones para comenzar.<br></td>
+	</tr>
+	{% endif %}
+</table>
+<br><br>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends '::backend.html.twig' %} {% block title %} Backend - Agregar Equipo {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+
+<div class="container bs-docs-container">
+	
+ <div class="row">
+ 
+        <div class="col-md-12" role="main">
+		
+         <ul class="nav nav-tabs">
+  <li role="presentation" ><a href="portada">Premios</a></li>
+  <li role="presentation" class="active"><a href="addequipo">Agregar</a></li>
+
+</ul>
+<br>
+<div class="modal fade" id="myModalinac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Eliminar Equipo?</h4>
+      </div>
+      <div class="modal-body">
+        Desea Eliminar este Equipo?
+      </div>
+      <div class="modal-footer">
+	  <button type="button" class="btn btn-primary">Si</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>	
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">Panel heading</div---->
+<div id="form" style="padding: 15px;">
+	<form action="{{ path('premios_add') }}" method="post"
+		
+	
+	
+	 {{
+form_enctype(formulario) }}>
+		{{ form_errors(formulario) }}
+
+{{ form_label(formulario.titulo, 'Titulo Premio') }}
+{{ form_errors(formulario.titulo) }} 
+{{ form_widget(formulario.titulo, { 'attr': {'class': 'form-control'} }) }}
+<br><br>
+{{ form_label(formulario.detalle, 'Detalle') }}
+{{ form_errors(formulario.detalle) }} 
+{{ form_widget(formulario.detalle, { 'attr': {'class': 'form-control'} }) }}
+<br><br>	
+{{ form_label(formulario.puesto, 'Puesto') }}
+{{ form_errors(formulario.puesto) }} 
+{{ form_widget(formulario.puesto, { 'attr': {'class': 'form-control'} }) }}
+<br><br>			
+{{ form_label(formulario.categoria, 'Categoria') }}
+{{ form_errors(formulario.categoria) }} 
+{{ form_widget(formulario.categoria, { 'attr': {'class': 'form-control'} }) }}
+<br><br>			
+{{ form_label(formulario.style, 'Estilo') }}
+{{ form_errors(formulario.style) }} 
+{{ form_widget(formulario.style, { 'attr': {'class': 'form-control'} }) }}
+<br><br>					
+{{ form_label(formulario.foto, 'Foto Premio') }}
+{{ form_errors(formulario.foto) }} 
+{{ form_widget(formulario.foto, { 'attr': {'class': 'form-control'} }) }}
+		<br><br>
+		{{ form_widget(formulario) }}<br>
+					<button type="submit" class="btn btn-default" />Agregar Premio
+					</button>
+		
+
+	</form>
+</div>
+
+
+  
+</div>
+           
+  </div>
+	  
+</div> <!--- row ---->
+    </div> <!-- /container -->
+
+
+
+
+
+
+</article>
+{% endblock %}

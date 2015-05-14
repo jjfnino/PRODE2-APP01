@@ -1,0 +1,97 @@
+{# src/Cupon/UsuarioBundle/Resources/views/Default/registro.html.twig #}
+{% extends '::backend.html.twig' %} {% block id 'usuario' %} {% block
+title %}Regístrate y gan&aacute; fabulosos premios{% endblock %} {%
+block article %}
+
+
+	<div align="center">{# render(controller('FrontendBundle:Banners:cajaBanners', {'seccion': 'REGISTROP'})) #}</div>
+<div align="center">{# render(controller('FrontendBundle:Banners:cajaBanners', {'seccion': 'REGISTROT'})) #}</div>
+<div align="center">
+<div class="row"  style="background-color: #ffffff; padding: 15px; width: 90%;" align="left"> <a href="javascript:history.back(1)" class="btn btn-primary">Volver</a><h2></h2></div>
+<div class="row" style="background-color: #ffffff; padding: 15px; width: 90%;" >
+<div class="col-md-6"  align="left">
+
+{% for usr in usuario %}
+<label>Apodo</label>
+{{ usr.apodo }}
+<br>
+<label>Nombre</label>
+{{ usr.nombre }}
+<br>
+<label>Apellid</label>
+{{ usr.apellido }}
+	<br>
+<label>Fecha Nacimiento</label>
+{{ usr.fechanacimiento | date('d-m-Y') }}
+<br>
+<label>Fecha Alta</label>
+{{ usr.fecha_alta | date('d-m-Y') }}
+<br>
+<label>Documento</label>
+{{ usr.dni }}
+<br>
+<label>Sexo</label>
+{{ usr.sexo }}
+<br>
+<label>Empresa</label>
+{{ usr.empresa }}
+<br>
+<label>Ciudad</label>
+{{ usr.ciudad }}
+<br>
+<label>Pais</label>
+{{ usr.pais }}
+<br>
+<label>Area/Telefono</label>
+{{ usr.area }} / {{ usr.telefono }} 
+
+
+<div class="form-inline" >
+
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="col-md-6" align="left">
+<form action="{{ path('backend_usuarios_add', {'id': id}) }}" method="post"
+	
+	
+	
+	
+	
+	
+	
+{{ form_enctype(formulario) }}
+{{ form_errors(formulario) }}>
+
+{{ form_label(formulario.email, 'E-mail') }}<span class="asterisc">*</span>
+{{ form_errors(formulario.email) }}
+{{ form_widget(formulario.email, { 'attr': {'class': 'form-control'} }) }}
+<br>
+
+	{{ form_label(formulario.roles, 'Role') }}
+			{{ form_errors(formulario.roles) }} {{
+				form_widget(formulario.roles, { 'attr': {'class': 'form-control'} }) }}
+
+<br>
+
+{{ form_label(formulario.tipo, 'Tipo') }}<span class="asterisc">*</span>
+{{ form_errors(formulario.tipo) }}
+{{ form_widget(formulario.tipo, { 'attr': {'class': 'form-control'} }) }}
+
+<br>
+<br>
+
+{{ form_widget(formulario) }}
+				<button type="submit" class="btn btn-danger" />Guardar Usuario
+				</button>
+
+</form>
+
+</div>
+</div>
+</div>
+{% endblock %} {% block aside %}{% endblock %}

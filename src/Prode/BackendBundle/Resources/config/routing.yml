@@ -1,0 +1,104 @@
+backend_homepage:
+    pattern:  /backend/index
+    defaults: { _controller: BackendBundle:Default:index }
+backend_login:
+    pattern:  /backend/login
+    defaults: { _controller: BackendBundle:Default:login }
+backend_usuarios:
+    pattern:  /backend/usuarios
+    defaults: { _controller: BackendBundle:Usuarios:index }
+backend_login_check:
+    pattern: /backend/login_check   
+    
+backend_logout:
+    pattern: /backend/logout
+    
+backend_usuarios_add:
+    pattern:  /backend/usuarios/add
+    defaults: { _controller: BackendBundle:Usuarios:add }
+backend_usuario_estado:
+    pattern:  /backend/usuarios/estado
+    defaults: { _controller: BackendBundle:Usuarios:estado }
+backend_usuario_edit:
+    pattern:  /backend/usuarios/edit/{id}
+    defaults: { _controller: BackendBundle:Usuarios:edit }         
+
+equipos_equipos:
+    pattern:  /backend/eq/equipos
+    defaults: { _controller: BackendBundle:Equipos:equipos }
+equipos_addequipo:
+    pattern:  /backend/eq/addequipo
+    defaults: { _controller: BackendBundle:Equipos:addequipo }
+equipos_editequipo:
+    pattern:  /backend/eq/editequipo/{id}
+    defaults: { _controller: BackendBundle:Equipos:editequipo }  
+equipos_delequipo:
+    pattern:  /backend/eq/delequipo/{id}
+    defaults: { _controller: BackendBundle:Equipos:delequipo }
+
+partidos_portada:
+    pattern:  /backend/partidos/portada
+    defaults: { _controller: BackendBundle:Partidos:portada }
+partidos_add:
+    pattern:  /backend/partidos/add
+    defaults: { _controller: BackendBundle:Partidos:addpartido }
+partidos_edit:
+    pattern:  /backend/partidos/edit/{id}
+    defaults: { _controller: BackendBundle:Partidos:editpartido }  
+partidos_del:
+    pattern:  /backend/partidos/del/{id}
+    defaults: { _controller: BackendBundle:Partidos:delpartido }
+partidos_estado:
+    pattern:  /backend/partidos/estado
+    defaults: { _controller: BackendBundle:Partidos:estado }
+
+premios_portada:
+    pattern:  /backend/premios/portada
+    defaults: { _controller: BackendBundle:Premios:portada }
+premios_add:
+    pattern:  /backend/premios/add
+    defaults: { _controller: BackendBundle:Premios:add } 
+premios_del:
+    pattern:  /backend/premios/del
+    defaults: { _controller: BackendBundle:Premios:del }
+premios_edit:
+    pattern:  /backend/premios/edit/{id}
+    defaults: { _controller: BackendBundle:Premios:edit }
+premios_estado:
+    pattern:  /backend/premios/estado
+    defaults: { _controller: BackendBundle:Premios:estado }
+
+ventas_portada:
+    pattern:  /backend/sales/portada
+    defaults: { _controller: BackendBundle:Ventas:portada }
+ventas_results:
+    pattern:  /backend/sales/results
+    defaults: { _controller: BackendBundle:Ventas:resultados}
+ventas_acumular:
+    pattern:  /backend/sales/acumular
+    defaults: { _controller: BackendBundle:Ventas:acumular}
+ventas_intercambiar:
+    pattern:  /backend/sales/intercambiar
+    defaults: { _controller: BackendBundle:Ventas:intercambiar}    
+ventas_detalle:
+    pattern:  /backend/sales/detalle/{id}
+    defaults: { _controller: BackendBundle:Ventas:detalle }
+    
+banners_portada:
+    pattern:  /backend/ban/portada
+    defaults: { _controller: BackendBundle:Banners:portada }
+banners_add:
+    pattern:  /backend/ban/add
+    defaults: { _controller: BackendBundle:Banners:add }
+banners_edit:
+    pattern:  /backend/ban/edit/{id}
+    defaults: { _controller: BackendBundle:Banners:edit }  
+banners_del:
+    pattern:  /backend/ban/del/{id}
+    defaults: { _controller: BackendBundle:Banners:del }
+banners_estado:
+    pattern:  /backend/ban/estado
+    defaults: { _controller: BackendBundle:Banners:estado }
+banners_prev:
+    pattern:  /backend/ban/prev
+    defaults: { _controller: BackendBundle:Banners:preview }         

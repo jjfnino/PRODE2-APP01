@@ -1,0 +1,52 @@
+{% extends '::backend.html.twig' %} {% block title %} Mundial 2014 -
+Segurviaje {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+	{# render(controller('BackendBundle:Usuarios:cajaUsuarios')) #}
+	<header><h3>VENTAS - BUSCADOR DE USUARIOS</h3></header>
+	<div class="module_content">
+		<table cellspacing="1" cellpadding="5" border="0" width="100%">
+		
+		<tr>
+			<td class="backend_descripcion" colspan="9" >Busc&aacute; un usuario y sumale puntos o intercambia sus puntos por premios.</td>
+		</tr>
+	</table>
+	<table cellspacing="1" cellpadding="1" border="0" width="580">
+		<tr>
+			<td height="15"></td>
+		</tr>
+		<tr>
+			<td class="titulos" colspan="9">Buscar Jugador</td>
+		</tr>
+		<tr>
+			<td>
+
+				<form action="{{ path('ventas_results') }}" method="post">
+					<table cellspacing="1" cellpadding="1" border="0" width="580">
+						<tr>
+							<td height="15"></td>
+						</tr>
+						<tr>
+							<td class="titulos" colspan="9"><input type="text" placeholder="Nombre" id="nombre" name="nombre">
+							<input type="text" placeholder="Apellido" id="apellido" name="apellido"><br>
+							<input type="text" placeholder="Dni" id="dni" name="dni">
+							<input type="text" placeholder="E-Mail" id="email" name="email"><br>
+							<input type="text" placeholder="Apodo" id="apodo" name="apodo">
+							</td>
+						</tr>
+						<tr>
+							<td align="center"><button type="submit"
+												style="border: 0px; width: 60px; height: 30px;">Buscar</button></td>
+						</tr>
+
+					</table>
+
+				</form>
+			</td>
+		</tr>
+
+	</table>
+	
+
+</div>
+</article>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends '::backend.html.twig' %} {% block title %} Backend - Equipos {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+
+	<div class="container bs-docs-container">
+	
+ <div class="row">
+ 
+        <div class="col-md-12" role="main">
+		
+         <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Premios</a></li>
+  <li role="presentation"><a href="add">Agregar</a></li>
+
+</ul>
+<br>
+<div class="modal fade" id="myModalinac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Eliminar Equipo?</h4>
+      </div>
+      <div class="modal-body">
+        Desea Eliminar este Equipo?
+      </div>
+      <div class="modal-footer">
+	  <button type="button" class="btn btn-primary">Si</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>	
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">Panel heading</div---->
+
+
+
+  <!-- Table -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+		<th></th>
+        <th></th>
+        <th>Titulo</th>
+        <th>Categoria</th>
+		<th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% set count = 1 %} {% for premio in premios| sort('id') %}
+      <tr>
+	  <td><b>{{ premio.id }}</b></td>
+        <td>
+        <img src="{{ asset('uploads/images/' ~ premio.rutaFoto) }}" width="25" /></td>
+        <td>{{ premio.titulo }}</td>
+        <td>{{ premio.categoria }}</td>
+		<td>
+		{% if premio.estado == '1' %}
+							<a href="estado?i={{ premio.id }}&e=0&r=1" class="btn btn-xs btn-success">Activo</a>
+							{% else %}
+							<a href="estado?i={{ premio.id }}&e=1&r=1" class="btn btn-xs btn-danger">Inactivo</a>
+							{% endif %}
+		&nbsp;<a href="del/{{ premio.id }}" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModalinac">Eliminar</a> 
+		&nbsp;<a  href="edit/{{ premio.id }}" class="btn btn-xs btn-warning">Editar</a>
+		</td>
+      </tr>
+     {% set count = count + 1 %} {% endfor %} 
+      
+    </tbody>
+  </table>
+</div>
+           
+  </div>
+	  
+</div> <!--- row ---->
+    </div> <!-- /container -->
+	
+	
+
+</article>
+{% endblock %}

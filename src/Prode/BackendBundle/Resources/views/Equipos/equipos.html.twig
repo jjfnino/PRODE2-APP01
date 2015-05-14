@@ -1,0 +1,92 @@
+{% extends '::backend.html.twig' %} {% block title %} Backend - Equipos {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+
+	<div class="container bs-docs-container">
+	
+ <div class="row">
+ <div class="col-md-3" role="complementary">
+          <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+            <ul class="nav bs-docs-sidenav">
+              
+<li><a href="equipos" style="background-color:#f4f4f4;">Equipos</a></li>
+<li><a href="../partidos/portada">Partidos</a></li>
+<li><a href="#transitions">Resultados</a></li>
+
+
+
+              
+            
+            
+          </nav>
+        </div>
+        <div class="col-md-9" role="main">
+		
+         <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Equipos</a></li>
+  <li role="presentation"><a href="addequipo">Agregar</a></li>
+
+</ul>
+<br>
+<div class="modal fade" id="myModalinac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Eliminar Equipo?</h4>
+      </div>
+      <div class="modal-body">
+        Desea Eliminar este Equipo?
+      </div>
+      <div class="modal-footer">
+	  <button type="button" class="btn btn-primary">Si</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>	
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">Panel heading</div---->
+
+
+
+  <!-- Table -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+		<th></th>
+        <th></th>
+        <th>Pais</th>
+        <th>Grupo</th>
+		<th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% set count = 1 %} {% for equipo in equipos| sort('id') %}
+      <tr>
+	  <td><b>{{ equipo.id }}</b></td>
+        <td>
+        <img src="{{ asset('uploads/images/' ~ equipo.rutaFoto) }}" width="25" /></td>
+        <td>{{ equipo.nombre }}</td>
+        <td>{{ equipo.grupo }}</td>
+		<td>
+		<a href="delequipo/{{ equipo.id }}" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModalinac">Eliminar</a> 
+		&nbsp;<a  href="editequipo/{{ equipo.id }}" class="btn btn-xs btn-warning">Editar</a>
+		</td>
+      </tr>
+     {% set count = count + 1 %} {% endfor %} 
+      
+    </tbody>
+  </table>
+</div>
+           
+  </div>
+	  
+</div> <!--- row ---->
+    </div> <!-- /container -->
+	
+	
+
+</article>
+{% endblock %}

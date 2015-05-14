@@ -1,0 +1,76 @@
+{% extends '::backend.html.twig' %} {% block title %} Mundial 2014 -
+Segurviaje {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+	{# render(controller('BackendBundle:Usuarios:cajaUsuarios')) #}
+	<header><h3>AGREGAR BANNER</h3></header>
+	<div class="module_content">
+	<table cellspacing="1" cellpadding="5" border="0" width="100%">
+
+			<tr>
+				<td class="backend_descripcion" colspan="9">&bull; Complete los campos para agregar un banner en la seccion que desee.
+				</td>
+			</tr>
+		</table>
+<table cellspacing="1" cellpadding="1" border="0" width="580">
+	<tr>
+		<td class="titulos" colspan="9"></td>
+	</tr>
+	<tr>
+			<td><a href="portada" width="150" class="add"><img
+					src="{{ asset('images/iconos/iBack.png') }}" title="Volver"
+					width="15" valign="middle" />&nbsp;&nbsp;&nbsp;VOLVER</a></td>
+		</tr>
+</table>
+
+
+<div id="form">
+	<form action="{{ path('banners_add') }}" method="post"
+		
+	
+	
+	 {{
+form_enctype(formulario) }}>
+		{{ form_errors(formulario) }}
+
+		<table class="partidos">
+			<tr>
+				<td width="150">{{ form_label(formulario.titulo, 'Titulo Banner') }}</td>
+				<td>{{ form_errors(formulario.titulo) }} {{
+					form_widget(formulario.titulo) }}</td>
+			</tr>
+			<tr>
+				<td width="150">{{ form_label(formulario.seccion, 'Seccion') }}</td>
+				<td>{{ form_errors(formulario.seccion) }} {{
+					form_widget(formulario.seccion) }}</td>
+			</tr>
+			<tr>
+				<td width="150">{{ form_label(formulario.url, 'Link destino') }}</td>
+				<td>{{ form_errors(formulario.url) }} {{
+					form_widget(formulario.url) }}</td>
+			</tr>
+			
+			<tr>
+				<td width="150">{{ form_label(formulario.foto, 'Foto Premio') }}</td>
+				<td>{{ form_errors(formulario.foto) }} {{
+					form_widget(formulario.foto) }}</td>
+			</tr>
+			
+			<tr>
+				<td height="10"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2">{{ form_widget(formulario) }}
+					<button type="submit" />Agregar Banner
+					</button>
+				</td>
+			</tr>
+		</table>
+
+
+	</form>
+</div>	
+
+</div>
+
+</article>
+{% endblock %}

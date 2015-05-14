@@ -1,0 +1,80 @@
+frontend_homepage:
+    pattern:  /index
+    defaults: { _controller: FrontendBundle:Default:index }
+
+frontend_fixture:
+    pattern:  /fixture
+    defaults: { _controller: FrontendBundle:Default:fixture }
+    
+frontend_portada:
+    pattern:  /portada
+    defaults: { _controller: FrontendBundle:Default:portada }
+
+frontend_ganadores:
+    pattern:  /ganadores
+    defaults: { _controller: FrontendBundle:Default:ganadores }
+
+frontend_premios:
+    pattern:  /premios
+    defaults: { _controller: FrontendBundle:Default:premios }
+
+frontend_reglamento:
+    pattern:  /reglamento
+    defaults: { _controller: FrontendBundle:Default:reglamento }
+
+usuario_registro:
+    pattern: /registro
+    defaults: { _controller: UsuarioBundle:Default:registro }   
+usuario_login:
+    pattern: /usuario/login
+    defaults: { _controller: UsuarioBundle:Default:login }  
+
+usuario_login_check:
+    pattern: /usuario/login_check   
+    
+usuario_logout:
+    pattern: /usuario/logout
+
+usuario_cajaLogin:
+    pattern: /cajaLogin
+    defaults: { _controller: UsuarioBundle:Default:cajaLogin }
+usuario_inactivo:
+    pattern: /inactivo
+    defaults: { _controller: UsuarioBundle:Default:inactivo }    
+usuario_activar:
+    pattern: /activar
+    defaults: { _controller: UsuarioBundle:Default:activar }    
+usuario_registrook:
+    pattern: /registrook
+    defaults: { _controller: UsuarioBundle:Default:registrook }
+usuario_perfil:
+    pattern: /perfil
+    defaults: { _controller: UsuarioBundle:Default:perfil }
+usuario_clavemail:
+    pattern: /clavemail
+    defaults: { _controller: UsuarioBundle:Default:clavemail }
+usuario_clavecambiar:
+    pattern: /clavecambiar
+    defaults: { _controller: UsuarioBundle:Default:clavecambiar }
+
+usuario_clavenueva:
+    pattern: /clavenueva
+    defaults: { _controller: UsuarioBundle:Default:clavenueva }  
+    
+usuario_ingresos:
+    pattern: /ingresos
+    defaults: { _controller: UsuarioBundle:Default:ingresos }      
+    
+jugada_portada:
+    pattern: /jugada/portada
+    defaults: { _controller: FrontendBundle:Jugada:index }
+
+jugada_ronda1:
+    pattern: /jugada/ronda1
+    defaults: { _controller: FrontendBundle:Jugada:ronda1 }
+
+jugada_guardar:
+    pattern: /jugada/guardar
+    defaults: { _controller: FrontendBundle:Jugada:guardar }        
+    
+          

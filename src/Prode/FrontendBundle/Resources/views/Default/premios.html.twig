@@ -1,0 +1,110 @@
+{% extends '::frontend.html.twig' %}
+{% block title %} Bienvenido {% endblock %}
+{% block id 'index' %}
+{% block article %} 
+<style>
+.puntos {
+	
+	color: #FFAE00;
+	font-family: Tahoma;
+	font-size: 15px;
+	text-shadow: 1px 1px #1C1C1C;
+	width: 160px;
+}
+.descripcion {
+	
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 15px;
+	text-shadow: 1px 1px #1C1C1C;
+	width: 250px;
+}
+.imagen{
+width: 60px;
+}
+
+.titulo {
+	
+	color: #FFAE00;
+	font-family: Tahoma;
+	font-size: 16px;
+	text-shadow: 1px 1px #000000;
+	font-weight: bold;
+	
+	}
+	.detalle {
+	
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 12px;
+	text-shadow: 1px 1px #000000;
+
+	
+	}
+	.puesto {
+	
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 16px;
+	text-shadow: 1px 1px #000000;
+	font-weight: bold;
+	
+	}
+	.premioslink a{
+	color: #ffffff;
+	}
+	.premioslink {
+	color: #FFAE00;
+	}
+</style>
+<div class="inner cover" align="center">
+        <h1 class="cover-heading">Premios</h1>
+        {% if categoria == '1' %}
+        <p class="lead">Acumul&aacute; ventas y aciertos y gan&aacute: m&aacute;s con la mejor asistencia al viajero del mundo</p>
+			   <p class="lead">
+              
+            </p>
+            {% else %}
+            
+            {% if categoria == '2' %}
+        <p class="lead">Instant&aacute;neos por ventas y aciertos</p>
+			   <p class="lead">
+              
+            </p>
+            {% endif %}
+            
+            {% endif %}
+      </div>
+<hr>
+	  <div class="row">
+	 {% for premio in premios if premio.categoria == '2' %}	
+	 <div  align="center" style="background-color: rgba(0, 0, 0, 0.5); "  >
+	 <table>
+	 	<tr>
+	 		<td class="imagen" align="left"><img src="{{ asset('uploads/images/' ~ premio.rutaFoto) }}" width="50" /></td>
+	 		<td class="descripcion" align="left">{{ premio.titulo }}</td>
+	 		<td class="puntos" align="left">Puntos <font color="#c3c3c3"><b>|</b></font> {{ premio.puesto }}</td></tr></table>
+	 </div><br>
+	{% endfor %}
+		
+      </div>
+       <div class="row" align="center">
+      {% for premio in premios if premio.categoria == '1' %}	
+       <div class="col-sm-6 col-md-4">
+	 <div  align="center" style=" width: 250px; background-color: rgba(0, 0, 0, 0.5); "  >
+	 <table>
+	 	<tr><td class="puesto">{{ premio.puesto }}&deg; Puesto</td></tr>
+	 	<tr><td><img src="{{ asset('uploads/images/' ~ premio.rutaFoto) }}" height="150" /></td></tr>
+	 	<tr><td class="titulo">{{ premio.titulo }}</td></tr>
+	 	<tr><td class="detalle">{{ premio.detalle }}<br><br></td></tr>
+	 </table>
+	 </div></div>
+	{% endfor %}
+	</div>
+	{% if categoria == '1' %}
+	<div class="row premioslink" align="center"><a href="premios?c=2">CLICK AQUI</a> para ver lista de premios instant&aacute;neos por ventas y aciertos </div>
+	{% else %}
+	<div class="row premioslink" align="center"><a href="premios">CLICK AQUI</a> para ver lista de premios por puesto </div>
+	{% endif %}
+      	 {% endblock %}
+{% block aside %} ... {% endblock %}

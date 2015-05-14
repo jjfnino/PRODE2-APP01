@@ -1,0 +1,92 @@
+{% extends '::backend.html.twig' %} {% block title %} Backend - Equipos {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+
+<div class="container bs-docs-container">
+	
+ <div class="row">
+ <div class="col-md-3" role="complementary">
+          <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+            <ul class="nav bs-docs-sidenav">
+              
+<li><a href="{{ url('equipos_equipos') }}" style="background-color:#f4f4f4;">Equipos</a></li>
+<li><a href="{{ url('partidos_portada') }}">Partidos</a></li>
+<li><a href="#transitions">Resultados</a></li>
+
+
+
+              
+            
+            
+          </nav>
+        </div>
+        <div class="col-md-9" role="main">
+		
+         <ul class="nav nav-tabs">
+  <li role="presentation" ><a href="../equipos">Equipos</a></li>
+  <li role="presentation" ><a href="{{ url('equipos_addequipo') }}">Agregar</a></li>
+  <li role="presentation" class="active"><a href="addequipo">Editar</a></li>
+
+</ul>
+<br>
+<div class="modal fade" id="myModalinac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Eliminar Equipo?</h4>
+      </div>
+      <div class="modal-body">
+        Desea Eliminar este Equipo?
+      </div>
+      <div class="modal-footer">
+	  <button type="button" class="btn btn-primary">Si</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>	
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">Panel heading</div---->
+<div id="form" style="padding: 15px;">
+	<form action="{{ path('equipos_editequipo', {'id': id}) }}" method="post"
+		
+	
+	
+	 {{
+form_enctype(formulario) }}>
+		{{ form_errors(formulario) }}
+
+		{{ form_label(formulario.nombre, 'Nombre') }}
+		{{ form_errors(formulario.nombre) }} 
+		{{ form_widget(formulario.nombre, { 'attr': {'class': 'form-control'} }) }}
+				<br><br>	
+		{{ form_label(formulario.grupo, 'Grupo') }}
+		{{ form_errors(formulario.grupo) }} 
+		{{ form_widget(formulario.grupo, { 'attr': {'class': 'form-control'} }) }}
+		<br><br>
+		{{ form_label(formulario.bandera, 'Bandera') }}
+		{{ form_errors(formulario.bandera) }} 
+		{{ form_widget(formulario.bandera, { 'attr': {'class': 'form-control'} }) }}
+		<br><br>
+		{{ form_widget(formulario) }}
+		<br>
+					<button type="submit" class="btn btn-default" />Agregar Equipo
+					</button>
+		
+
+	</form>
+</div>
+
+
+  
+</div>
+           
+  </div>
+	  
+</div> <!--- row ---->
+    </div> <!-- /container -->
+
+</article>
+{% endblock %}

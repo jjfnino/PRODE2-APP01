@@ -1,0 +1,15 @@
+extranet:
+    resource: "@ExtranetBundle/Resources/config/routing.yml"
+    prefix:   /
+
+backend:
+    resource: "@BackendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+frontend:
+    resource: "@FrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+homepage:
+    pattern:   /
+    defaults:  { _controller: FrontendBundle:Default:index }

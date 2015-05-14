@@ -1,0 +1,121 @@
+{% extends '::backend.html.twig' %} {% block title %} Backend - Partidos {% endblock %} {% block id 'index' %} {% block article %}
+<article class="module width_full">
+
+	<div class="container bs-docs-container">
+	
+ <div class="row">
+ <div class="col-md-3" role="complementary">
+          <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+            <ul class="nav bs-docs-sidenav">
+              
+<li><a href="{{ url('equipos_equipos') }}" >Equipos</a></li>
+<li><a href="{{ url('partidos_portada') }}" style="background-color:#f4f4f4;">Partidos</a></li>
+<li><a href="#transitions">Resultados</a></li>
+
+
+
+              
+            
+            
+          </nav>
+        </div>
+        <div class="col-md-9" role="main">
+		
+         <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="{{ url('partidos_portada') }}">Equipos</a></li>
+  <li role="presentation"><a href="{{ url('partidos_add') }}">Agregar</a></li>
+
+</ul>
+<br>
+<div class="modal fade" id="myModalinac" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Eliminar Equipo?</h4>
+      </div>
+      <div class="modal-body">
+        Desea Eliminar este Equipo?
+      </div>
+      <div class="modal-footer">
+	  <button type="button" class="btn btn-primary">Si</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        
+      </div>
+    </div>
+  </div>
+</div>	
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--div class="panel-heading">Panel heading</div---->
+
+
+
+  <!-- Table -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+		<th>Grupo</th>
+        <th>Dia</th>
+        <th>Hora</th>
+        <th></th>
+        <th>Pais</th>
+		<th>Goles</th>
+		<th>Goles</th>
+		<th>Pais</th>
+		<th></th>
+		
+		<th>Sede</th>
+		<th></th>
+		<th></th>
+		<th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for partido in partidos| sort('id') %}
+		<tr>
+			<td align="center" valign="middle" bgcolor="#c3c3c3">{{ partido.grupo }}</td>
+			<td align="center" valign="middle" >{{ partido.fecha|date('d/m', "America/Argentina/Buenos_Aires") }}</td>
+			<td>{{ partido.hora|date('H:i', "America/Argentina/Buenos_Aires") }}</td>
+			<td>
+			{% if partido.equipoa.rutaFoto is not defined %}
+			<img src="https://cdn0.iconfinder.com/data/icons/winter-lollipop/128/Help.png" width="15" />
+			{% else %}
+			<img src="{{ asset('uploads/images/' ~ partido.equipoa.rutaFoto) }}" width="15" />
+			{% endif %}
+			</td>
+			<td>{{ partido.equipoa }}</td>
+			<td>{{ partido.golesa }}</td>
+			<td>{{ partido.golesb }}</td>
+			<td>{{ partido.equipob }}</td>
+			<td>
+			{% if partido.equipob.rutaFoto is not defined %}
+			<img src="https://cdn0.iconfinder.com/data/icons/winter-lollipop/128/Help.png" width="15" />
+			{% else %}
+			<img src="{{ asset('uploads/images/' ~ partido.equipob.rutaFoto) }}" width="15" />
+			{% endif %}
+			</td>
+			
+			<td>{{ partido.sede }}</td>
+			<td align="center" class="activarResultado" >{% if partido.estado == '1' %}
+							<a href="{{ url('partidos_estado') }}?i={{ partido.id }}&e=0" class="btn btn-xs btn-success">ACTIVO</a>
+							{% else %}
+							<a href="{{ url('partidos_estado') }}?i={{ partido.id }}&e=1" class="btn btn-xs btn-danger">INACTIVO</a>
+							{% endif %}</td>
+			<td><a href="edit/{{ partido.id }}"class="btn btn-xs btn-warning">EDITAR</a></td>
+			<td><a href="del/{{ partido.id }}"class="btn btn-xs btn-danger">ELIMINAR</a></td>
+		</tr>
+		{% endfor %}
+    
+      
+    </tbody>
+  </table>
+</div>
+           
+  </div>
+	  
+</div> <!--- row ---->
+    </div> <!-- /container -->
+	
+</article>
+{% endblock %}

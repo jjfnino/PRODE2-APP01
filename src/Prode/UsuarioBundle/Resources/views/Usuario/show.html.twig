@@ -1,0 +1,128 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Usuario</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ entity.apellido }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            <tr>
+                <th>Dni</th>
+                <td>{{ entity.dni }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ entity.password }}</td>
+            </tr>
+            <tr>
+                <th>Empresa</th>
+                <td>{{ entity.empresa }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ entity.estado }}</td>
+            </tr>
+            <tr>
+                <th>Apodo</th>
+                <td>{{ entity.apodo }}</td>
+            </tr>
+            <tr>
+                <th>Comision</th>
+                <td>{{ entity.comision }}</td>
+            </tr>
+            <tr>
+                <th>Sexo</th>
+                <td>{{ entity.sexo }}</td>
+            </tr>
+            <tr>
+                <th>Fecha_nacimiento</th>
+                <td>{{ entity.fechanacimiento|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Pais</th>
+                <td>{{ entity.pais }}</td>
+            </tr>
+            <tr>
+                <th>Ciudad</th>
+                <td>{{ entity.ciudad }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ entity.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Equipo</th>
+                <td>{{ entity.equipo }}</td>
+            </tr>
+            <tr>
+                <th>Fecha_alta</th>
+                <td>{{ entity.fechaalta|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Fecha_modificacion</th>
+                <td>{{ entity.fechamodificacion|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Salt</th>
+                <td>{{ entity.salt }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ entity.token }}</td>
+            </tr>
+            <tr>
+                <th>Deacuerdo</th>
+                <td>{{ entity.deacuerdo }}</td>
+            </tr>
+            <tr>
+                <th>Prodecomp</th>
+                <td>{{ entity.prodecomp }}</td>
+            </tr>
+            <tr>
+                <th>Puntos</th>
+                <td>{{ entity.puntos }}</td>
+            </tr>
+            <tr>
+                <th>Ingresos</th>
+                <td>{{ entity.ingresos }}</td>
+            </tr>
+            <tr>
+                <th>Rutafoto</th>
+                <td>{{ entity.rutafoto }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ entity.roles }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('usuario') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('usuario_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

@@ -1,0 +1,52 @@
+{# src/Cupon/UsuarioBundle/Resources/views/Default/registro.html.twig #}
+{% extends '::frontend.html.twig' %} {% block id 'usuario' %} {% block
+title %}Recupera tu contrase&ntilde;a{% endblock %} {% block article %}
+
+<article>
+
+<div align="center">
+
+<div class="row"  style="background-color: #ffffff; padding: 15px; width: 90%;" align="center"><h3>Recuperar Contrase&ntilde;a</h3></div>
+<div class="row"  style="background-color: #ffffff; padding: 15px; width: 90%;" align="center">
+	<form action="{{ path('usuario_clavemail') }}" method="post"
+		onsubmit="return validateForm();" name="semana" id="semana">
+		<table align="center">
+			<tr>
+				<td height="15"></td>
+			</tr>
+			
+			
+			<tr>
+				<td class="prox_partido_det" colspan="2" width="600">Ingrese su email para recuperar su contrase&ntilde;a en el recuadro de abajo
+				</td>
+			</tr>
+			<tr><td height="40"></td></tr>
+			
+			<tr>
+				<td height="15" align="center">
+					{% if totalusaurios != 5 %} 
+						{% if totalusaurios == 0 %}
+							{# email incorrect0 #} 
+							<font color="red" face="arial">{{ mensaje }}</font> 
+						{% elseif totalusaurios > 0 %}
+							{# usuario correcto #}
+							<font color="green" face="arial">{{ mensaje }}</font> 
+						{% endif %} 
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><input type="email" name="e" id="e" value="{{ email }}" style="width: 200px;" class="form-control"></td>
+				
+			</tr>
+			<tr><td colspan="3" align="center"><br>
+					<input type="submit" class="btn btn-danger" value="Enviar" style="width: 150px;"
+					name="mail_submit" /></td></tr>
+		</table>
+
+	</form>
+	<br><br>
+</div>
+</div>
+</article>
+{% endblock %} {% block aside %}{% endblock %}

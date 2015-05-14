@@ -1,0 +1,192 @@
+{% extends '::frontend.html.twig' %}
+{% block title %} Bienvenido {% endblock %}
+{% block id 'index' %}
+{% block article %} 
+
+<style>
+.puntos {
+	
+	color: #FFAE00;
+	font-family: Tahoma;
+	font-size: 15px;
+	text-shadow: 1px 1px #1C1C1C;
+	width: 160px;
+}
+.descripcion {
+	
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 15px;
+	text-shadow: 1px 1px #1C1C1C;
+	width: 250px;
+}
+.imagen{
+width: 60px;
+}
+
+.titulo {
+	
+	color: #FFAE00;
+	font-family: Tahoma;
+	font-size: 18px;
+	text-shadow: 1px 1px #000000;
+	font-weight: bold;
+	text-align: center;
+	
+	}
+	.detalle {
+	
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 12px;
+	text-shadow: 1px 1px #000000;
+
+	
+	}
+	.puntos {
+	
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 14px;
+	text-shadow: 1px 1px #000000;
+	font-weight: bold;
+	padding: 8px;
+	
+	}
+	.rank_text{
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 14px;
+	text-shadow: 1px 1px #000000;
+	
+	padding: 8px;
+	}
+	.rank_puesto{
+	color: #FFAE00;
+	font-family: Tahoma;
+	font-size: 14px;
+	text-shadow: 1px 1px #000000;
+	font-weight: bold;
+	padding: 8px;
+	}
+	.puesto {
+	
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 78px;
+	text-shadow: 1px 1px #000000;
+	
+	padding: 8px;
+	
+	}
+	.puntos_extra{
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 38px;
+	text-shadow: 1px 1px #000000;
+	font-weight: bold;
+	text-align: left;
+	width: 58px;
+	}
+	.puntos_extra_txt{
+	color: #ffffff;
+	font-family: Tahoma;
+	font-size: 24px;
+	font-weight: bold;
+	text-shadow: 1px 1px #000000;
+	
+
+	}
+	.puntosg {
+	
+	color: #FFAE00;
+	font-family: Tahoma;
+	font-size: 14px;
+	text-shadow: 1px 1px #000000;
+	font-weight: bold;
+	padding: 8px;
+	
+	
+	}
+	.premioslink a{
+	color: #ffffff;
+	}
+	.premioslink {
+	color: #FFAE00;
+	}
+	.link_responder{
+	color: #FFAE00;
+	padding: 5px;
+	}
+	.link_responder:hover{
+	color: #ffffff;
+	}
+</style>
+
+<div class="inner cover" align="center">
+        <h1 class="cover-heading">INICIO</h1>
+        <p class="lead">Tus puntos, tu ranking y m&aacute;s</p>
+			   <p class="lead">
+              
+            </p>
+      </div>
+<hr>
+
+<div class="row" align="center">
+      
+       <div class="col-sm-6 col-md-4">
+	 <div  align="center"   >
+	 <table>
+	 <tr><td colspan="2" width="250" class="titulo">TU PUNTAJE</td></tr>
+	 <tr><td height="10"></td></tr>
+	 	<tr style=" width: 250px; background-color: rgba(0, 0, 0, 0.5); "><td class="puntos">Puntos por Venta</td><td class="puntos" align="right">{{ puntosventa }}</td></tr>
+	 	<tr><td height="5"></td></tr>
+	 	<tr style=" width: 250px; background-color: rgba(0, 0, 0, 0.5); "><td class="puntos">Puntos por aciertos</td><td class="puntos" align="right">{{ puntospartido }}</td></tr>
+	 	<tr><td height="5"></td></tr>
+	 	<tr style=" width: 250px; background-color: rgba(0, 0, 0, 0.5); "><td class="puntosg">Puntos GLOBAL</td><td class="puntosg" align="right">{{ puntos }}</td></tr>
+	 </table>
+	 </div></div>
+	 
+
+	 
+	 
+	 <div class="col-sm-6 col-md-4">
+	 <div  align="center"   >
+	 <table>
+	 <tr><td colspan="2" width="250" class="titulo">TU RANKING</td></tr>
+	 <tr><td class="puesto" valign="top">{{ puesto }}&deg;</td><td>
+	 <table>
+	 <tr><td height="10"></td></tr>
+	 	<tr style=" width: 250px; "><td class="rank_text" colspan="2">PUESTO EN LA GENERAL</td></tr>
+	 	<tr><td height="5"></td></tr>
+	 	<tr style=" width: 250px; background-color: rgba(0, 0, 0, 0.5); "><td class="rank_puesto">1&deg; Puesto</td><td class="rank_puesto" align="right">578</td></tr>
+	 	<tr><td height="5"></td></tr>
+	 	<tr style=" width: 250px; background-color: rgba(0, 0, 0, 0.5); "><td class="rank_puesto">2&deg; Puesto</td><td class="rank_puesto" align="right">538</td></tr>
+	 
+	 </table>
+	 
+	 </td></tr>
+	 </table>
+	 </div></div>
+	 
+	 
+	 <div class="col-sm-6 col-md-4">
+	 <div  align="center"   >
+
+	 <table>
+	  <tr><td colspan="2" width="250" class="titulo">SUMA PUNTOS EXTRAS</td></tr>
+	 <tr><td height="10"></td></tr>
+	 <tr><td class="rank_text" colspan="2" align="center">RESPONDE LAS TRIVIAS EN<br> FACEBOOK Y GANA HASTA</td></tr>
+	 <tr><td class="puntos_extra" valign="top">20</td><td class="puntos_extra_txt">puntos extra</td></tr>
+	 	<tr style=" width: 250px; background-color: rgba(0, 0, 0, 0.5); " ><td  colspan="2" align="center"><a href="http://www.facebook.com" target="_blank" class="link_responder">RESPONDER</a></td></tr>
+	 	
+
+	 
+	 </table>
+	 
+
+	 </div></div>
+	
+	</div>
+	   {% endblock %}
+{% block aside %} ... {% endblock %}
